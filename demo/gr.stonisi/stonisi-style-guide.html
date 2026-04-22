@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>stonisi.gr — Style guide (Phase 2)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap&subset=greek,greek-ext" rel="stylesheet">
+  <style>
+    /* ---------- tokens ---------- */
+    :root {
+      /* colour */
+      --ink:          #0A1A33;
+      --ink-muted:    #4A5668;
+      --ink-quiet:    #6E7887;
+      --brand:        #0F2A52;
+      --brand-link:   #1F4788;
+      --brand-hover:  #0F2A52;
+      --brand-tint:   #E8EEF8;
+      --brand-tint-2: #C9D6EC;
+      --paper:        #FFFFFF;
+      --paper-warm:   #FAFAFB;
+      --rule:         #DCE2EA;
+      --rule-strong:  #B6BFCD;
+      --live:         #C8102E;
+      --success:      #1F6B4A;
+      --warn:         #8C5A00;
+
+      /* typography */
+      --serif: "Source Serif 4", "Noto Serif", Georgia, serif;
+      --sans:  "Source Sans 3", "Noto Sans", -apple-system, "Segoe UI", sans-serif;
+
+      --fs-micro:     0.75rem;
+      --fs-meta:      0.8125rem;
+      --fs-caption:   0.875rem;
+      --fs-body:      1.0625rem;
+      --fs-standfirst:1.1875rem;
+      --fs-h4:        1.25rem;
+      --fs-h3:        1.5rem;
+      --fs-h2:        1.875rem;
+      --fs-h1:        2.375rem;
+      --fs-display:   2.75rem;
+
+      /* spacing */
+      --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+      --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+      --sp-9: 96px; --sp-10: 128px;
+
+      /* radius */
+      --r-xs: 2px; --r-sm: 4px; --r-md: 6px; --r-lg: 10px; --r-pill: 9999px;
+
+      /* shadow */
+      --sh-sm: 0 1px 2px rgba(10,26,51,.06);
+      --sh-md: 0 4px 12px rgba(10,26,51,.08);
+      --sh-lg: 0 12px 32px rgba(10,26,51,.14);
+
+      /* motion */
+      --dur-fast: 160ms;
+      --dur-base: 240ms;
+      --ease-standard: cubic-bezier(.2,0,0,1);
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --fs-body:      1.125rem;
+        --fs-standfirst:1.3125rem;
+        --fs-h4:        1.375rem;
+        --fs-h3:        1.75rem;
+        --fs-h2:        2.25rem;
+        --fs-h1:        3rem;
+        --fs-display:   4rem;
+        --fs-caption:   0.9375rem;
+      }
+    }
+
+    /* ---------- reset & base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: var(--fs-body);
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    a { color: var(--brand-link); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+    a:hover { color: var(--brand-hover); text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 2px solid var(--brand-link); outline-offset: 2px; border-radius: var(--r-xs); }
+    :focus-visible { outline: 2px solid var(--brand-link); outline-offset: 2px; }
+    img { max-width: 100%; display: block; }
+
+    /* ---------- layout wrapper ---------- */
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--sp-4); }
+    @media (min-width: 1024px) { .wrap { padding: 0 var(--sp-6); } }
+
+    .skiplink {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--brand); color: var(--paper);
+      padding: var(--sp-3) var(--sp-4); z-index: 100;
+    }
+    .skiplink:focus { left: var(--sp-3); top: var(--sp-3); }
+
+    /* ---------- page header ---------- */
+    .guide-header {
+      background: var(--brand);
+      color: var(--paper);
+      padding: var(--sp-8) 0 var(--sp-7);
+    }
+    .guide-header .wrap > div { max-width: 780px; }
+    .guide-header h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: var(--fs-display);
+      line-height: 1.1;
+      margin: 0 0 var(--sp-4);
+      color: var(--paper);
+    }
+    .guide-header p {
+      font-family: var(--sans);
+      font-size: var(--fs-standfirst);
+      color: #BFD0ED;
+      margin: 0;
+      max-width: 60ch;
+    }
+    .guide-header .kicker {
+      font-family: var(--sans);
+      font-size: var(--fs-meta);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8FB4E8;
+      margin: 0 0 var(--sp-4);
+    }
+
+    /* ---------- section framework ---------- */
+    section.block { padding: var(--sp-8) 0; border-bottom: 1px solid var(--rule); }
+    section.block.tint { background: var(--brand-tint); border-bottom-color: var(--brand-tint-2); }
+    section.block.warm { background: var(--paper-warm); }
+    h2.block-title {
+      font-family: var(--serif);
+      font-size: var(--fs-h2);
+      font-weight: 600;
+      line-height: 1.15;
+      margin: 0 0 var(--sp-2);
+      color: var(--ink);
+    }
+    .block-intro {
+      font-family: var(--sans);
+      font-size: var(--fs-body);
+      color: var(--ink-muted);
+      margin: 0 0 var(--sp-6);
+      max-width: 62ch;
+    }
+    h3.sub {
+      font-family: var(--sans);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: var(--fs-meta);
+      color: var(--brand-link);
+      margin: var(--sp-6) 0 var(--sp-3);
+      font-weight: 600;
+    }
+
+    /* ---------- colour swatches ---------- */
+    .swatches { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .swatch {
+      border: 1px solid var(--rule);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--paper);
+    }
+    .swatch .chip { height: 96px; display: flex; align-items: flex-end; padding: var(--sp-3); }
+    .swatch .chip span {
+      font-family: var(--sans); font-size: var(--fs-meta); font-weight: 600;
+      background: rgba(255,255,255,.82); color: var(--ink);
+      padding: 2px 6px; border-radius: var(--r-xs);
+    }
+    .swatch .meta { padding: var(--sp-3); font-family: var(--sans); font-size: var(--fs-meta); color: var(--ink-muted); }
+    .swatch .meta strong { display: block; color: var(--ink); font-size: var(--fs-body); font-weight: 600; margin-bottom: 2px; }
+    .swatch .meta code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; background: var(--brand-tint); padding: 1px 4px; border-radius: var(--r-xs); }
+
+    /* ---------- type specimens ---------- */
+    .specimen { padding: var(--sp-4) 0; border-top: 1px dashed var(--rule); }
+    .specimen:first-child { border-top: 0; }
+    .specimen .label {
+      font-family: var(--sans);
+      font-size: var(--fs-meta);
+      color: var(--ink-quiet);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--sp-2);
+    }
+    .specimen .display { font-family: var(--serif); font-weight: 600; line-height: 1.1; color: var(--ink); margin: 0; }
+    .specimen .h1 { font-family: var(--serif); font-weight: 600; font-size: var(--fs-h1); line-height: 1.15; margin: 0; }
+    .specimen .h2 { font-family: var(--serif); font-weight: 600; font-size: var(--fs-h2); line-height: 1.15; margin: 0; }
+    .specimen .h3 { font-family: var(--serif); font-weight: 600; font-size: var(--fs-h3); line-height: 1.2; margin: 0; }
+    .specimen .standfirst { font-family: var(--serif); font-style: italic; font-size: var(--fs-standfirst); color: var(--ink-muted); margin: 0; max-width: 62ch; }
+    .specimen .body-serif { font-family: var(--serif); font-size: var(--fs-body); line-height: 1.6; margin: 0; max-width: 62ch; }
+    .specimen .body-sans { font-family: var(--sans); font-size: var(--fs-body); line-height: 1.55; margin: 0; max-width: 62ch; }
+    .specimen .caption { font-family: var(--sans); font-size: var(--fs-caption); color: var(--ink-muted); margin: 0; }
+    .specimen .meta { font-family: var(--sans); font-size: var(--fs-meta); color: var(--ink-quiet); margin: 0; }
+
+    /* ---------- chips / pills ---------- */
+    .chip {
+      display: inline-flex; align-items: center;
+      font-family: var(--sans); font-weight: 600;
+      font-size: var(--fs-meta); letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 6px 10px; border-radius: var(--r-sm);
+      text-decoration: none;
+    }
+    .chip.solid   { background: var(--brand); color: var(--paper); }
+    .chip.outline { background: transparent; color: var(--brand); border: 1px solid var(--brand); }
+    .chip.inverse { background: var(--paper); color: var(--brand); border: 1px solid var(--rule); }
+    .chip-set { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+
+    /* ---------- live indicator ---------- */
+    .live {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      font-family: var(--sans); font-weight: 700;
+      font-size: var(--fs-meta); letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--live);
+    }
+    .live::before {
+      content: ""; width: 9px; height: 9px; border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 0 0 rgba(200,16,46,.5);
+      animation: pulse 1.6s var(--ease-standard) infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(200,16,46,.5); }
+      80%  { box-shadow: 0 0 0 10px rgba(200,16,46,0); }
+      100% { box-shadow: 0 0 0 0 rgba(200,16,46,0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .live::before { animation: none; }
+    }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; min-width: 44px;
+      padding: 0 var(--sp-4);
+      font-family: var(--sans); font-weight: 600; font-size: var(--fs-body);
+      border: 1px solid transparent;
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+    }
+    .btn.primary { background: var(--brand); color: var(--paper); }
+    .btn.primary:hover { background: #081F3F; }
+    .btn.secondary { background: transparent; color: var(--brand); border-color: var(--brand); }
+    .btn.secondary:hover { background: var(--brand-tint); }
+    .btn.quiet { background: transparent; color: var(--brand-link); padding-inline: var(--sp-2); }
+    .btn.quiet:hover { color: var(--brand-hover); text-decoration: underline; }
+    .btn-set { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+
+    /* ---------- form ---------- */
+    .field { display: flex; flex-direction: column; gap: var(--sp-2); max-width: 420px; }
+    .field label { font-family: var(--sans); font-size: var(--fs-meta); color: var(--ink); font-weight: 600; }
+    .field input {
+      font-family: var(--sans); font-size: var(--fs-body);
+      min-height: 44px;
+      padding: 0 var(--sp-3);
+      border: 1px solid var(--rule-strong);
+      border-radius: var(--r-xs);
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .field input:focus-visible { border-color: var(--brand-link); }
+    .field .hint { font-family: var(--sans); font-size: var(--fs-meta); color: var(--ink-quiet); }
+    .field .error { font-family: var(--sans); font-size: var(--fs-meta); color: var(--live); display: flex; align-items: center; gap: 6px; }
+    .field .error::before { content: "!"; display: inline-grid; place-items: center; width: 16px; height: 16px; background: var(--live); color: var(--paper); border-radius: 50%; font-weight: 700; font-size: 11px; }
+
+    /* ---------- article card ---------- */
+    .cards { display: grid; gap: var(--sp-5); grid-template-columns: 1fr; }
+    @media (min-width: 768px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+    .card { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .card .img {
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #1F4788 0%, #0F2A52 100%);
+      position: relative;
+    }
+    .card .img.photo-1 { background: linear-gradient(135deg, #2B4C7E 0%, #0F2A52 100%); }
+    .card .img.photo-2 { background: linear-gradient(135deg, #4A6FA5 0%, #1F4788 100%); }
+    .card .img.photo-3 { background: linear-gradient(135deg, #1F4788 0%, #081F3F 100%); }
+    .card .img.photo-4 { background: linear-gradient(135deg, #3B6FC9 0%, #1F4788 100%); }
+    .card .img.photo-5 { background: linear-gradient(135deg, #0F2A52 0%, #0A1A33 100%); }
+    .card .img.photo-6 { background: linear-gradient(135deg, #5B7FB8 0%, #2B4C7E 100%); }
+    .card .kicker {
+      font-family: var(--sans); font-weight: 600;
+      font-size: var(--fs-meta); letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--brand-link);
+    }
+    .card h3 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: var(--fs-h4); line-height: 1.2;
+      margin: 0; color: var(--ink);
+    }
+    .card .meta { font-family: var(--sans); font-size: var(--fs-meta); color: var(--ink-quiet); }
+
+    /* ---------- masthead preview ---------- */
+    .masthead {
+      border: 1px solid var(--rule);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--paper);
+    }
+    .masthead .strip {
+      background: var(--brand);
+      color: var(--paper);
+      padding: var(--sp-2) var(--sp-4);
+      display: flex; gap: var(--sp-4); align-items: center;
+      font-family: var(--sans); font-size: var(--fs-meta);
+    }
+    .masthead .strip .brand { font-family: var(--serif); font-weight: 700; font-size: 1.375rem; letter-spacing: 0.04em; }
+    .masthead .strip .spacer { flex: 1; }
+    .masthead .strip a { color: var(--paper); text-decoration: none; opacity: 0.85; }
+    .masthead .strip a:hover { opacity: 1; }
+    .masthead nav {
+      display: flex; gap: var(--sp-5); padding: var(--sp-3) var(--sp-4);
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .masthead nav::-webkit-scrollbar { display: none; }
+    .masthead nav a {
+      font-family: var(--sans); font-weight: 600;
+      font-size: var(--fs-meta); letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+      padding: var(--sp-2) 0;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .masthead nav a:hover, .masthead nav a.current { color: var(--brand-link); border-bottom-color: var(--brand-link); }
+
+    /* ---------- newsletter block ---------- */
+    .newsletter {
+      background: var(--brand-tint);
+      border: 1px solid var(--brand-tint-2);
+      border-radius: var(--r-md);
+      padding: var(--sp-6);
+      display: grid; gap: var(--sp-4);
+    }
+    @media (min-width: 768px) { .newsletter { grid-template-columns: 1.5fr 1fr; align-items: center; } }
+    .newsletter h3 { font-family: var(--serif); font-weight: 600; font-size: var(--fs-h3); line-height: 1.2; margin: 0 0 var(--sp-2); color: var(--ink); }
+    .newsletter p { font-family: var(--sans); font-size: var(--fs-body); color: var(--ink-muted); margin: 0; }
+    .newsletter form { display: flex; gap: var(--sp-2); align-items: stretch; }
+    .newsletter input { flex: 1; min-height: 44px; padding: 0 var(--sp-3); border: 1px solid var(--rule-strong); border-radius: var(--r-xs); font-family: var(--sans); font-size: var(--fs-body); background: var(--paper); color: var(--ink); }
+
+    /* ---------- ad slot ---------- */
+    .ad-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-4) 0;
+    }
+    .ad-wrap .label {
+      font-family: var(--sans); font-weight: 600; font-size: var(--fs-micro);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-quiet);
+    }
+    .ad-box {
+      border: 1px dashed var(--rule-strong);
+      background: var(--paper-warm);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--sans); font-size: var(--fs-meta); color: var(--ink-quiet);
+      width: 100%;
+    }
+    .ad-box.leaderboard { height: 100px; max-width: 728px; }
+    @media (min-width: 1024px) { .ad-box.leaderboard { height: 250px; max-width: 970px; } }
+    .ad-box.mpu { height: 280px; max-width: 300px; }
+    .ad-box.sidebar { height: 600px; max-width: 300px; }
+
+    /* ---------- article preview ---------- */
+    .article {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-md);
+      padding: var(--sp-6);
+    }
+    .article .kicker {
+      font-family: var(--sans); font-weight: 600; font-size: var(--fs-meta);
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-link);
+      margin: 0 0 var(--sp-3);
+    }
+    .article h1 {
+      font-family: var(--serif); font-weight: 600; font-size: var(--fs-h1); line-height: 1.15;
+      margin: 0 0 var(--sp-4); color: var(--ink); max-width: 24ch;
+    }
+    .article .standfirst {
+      font-family: var(--serif); font-style: italic; font-size: var(--fs-standfirst);
+      color: var(--ink-muted); margin: 0 0 var(--sp-5); max-width: 62ch; line-height: 1.5;
+    }
+    .article .byline { font-family: var(--sans); font-size: var(--fs-meta); color: var(--ink-muted); margin: 0 0 var(--sp-5); }
+    .article .body p { max-width: 62ch; margin: 0 0 var(--sp-4); }
+    .article .body p:first-of-type::first-letter {
+      font-family: var(--serif); font-weight: 700; font-size: 3.5em;
+      float: left; line-height: 0.9; margin: 0.05em var(--sp-3) 0 0; color: var(--brand);
+    }
+
+    /* ---------- scale ruler ---------- */
+    .spacing-row { display: flex; align-items: center; gap: var(--sp-4); font-family: var(--sans); font-size: var(--fs-meta); color: var(--ink-muted); padding: var(--sp-1) 0; }
+    .spacing-row .bar { background: var(--brand-link); height: 8px; border-radius: var(--r-xs); }
+    .spacing-row code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; color: var(--ink); min-width: 64px; }
+
+    /* ---------- toc ---------- */
+    .toc { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); margin: var(--sp-5) 0 0; }
+    .toc a { font-family: var(--sans); font-size: var(--fs-meta); text-decoration: none; }
+
+    footer.site {
+      background: var(--brand);
+      color: #BFD0ED;
+      padding: var(--sp-7) 0;
+      font-family: var(--sans); font-size: var(--fs-meta);
+    }
+  </style>
+</head>
+<body>
+  <a class="skiplink" href="#main">Μετάβαση στο περιεχόμενο</a>
+
+  <header class="guide-header">
+    <div class="wrap">
+      <div>
+        <p class="kicker">Phase 2 · Style guide · stonisi.gr</p>
+        <h1>Η ισορροπία πριν από την αισθητική</h1>
+        <p>Ζωντανή επίδειξη των σχεδιαστικών tokens — τυπογραφία, χρώμα, απόσταση, συνιστώσες — σε πραγματικό ελληνικό περιεχόμενο. Κάθε διακριτικό παρακάτω αντιστοιχεί στο <code>stonisi-design-tokens.md</code>.</p>
+        <nav class="toc" aria-label="Περιεχόμενα οδηγού">
+          <a href="#typography">Τυπογραφία</a>
+          <a href="#colour">Χρώμα</a>
+          <a href="#chips">Ετικέτες</a>
+          <a href="#masthead">Μετωπίδα</a>
+          <a href="#cards">Κάρτες</a>
+          <a href="#article">Άρθρο</a>
+          <a href="#newsletter">Newsletter</a>
+          <a href="#ads">Διαφημίσεις</a>
+          <a href="#buttons">Κουμπιά</a>
+          <a href="#forms">Φόρμες</a>
+          <a href="#spacing">Απόσταση</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- TYPOGRAPHY -->
+    <section class="block" id="typography">
+      <div class="wrap">
+        <h2 class="block-title">Τυπογραφία</h2>
+        <p class="block-intro">Source Serif 4 για την επικεφαλίδα και το κείμενο άρθρου· Source Sans 3 για UI, λεζάντες και μεταδεδομένα. Η σύζευξη σχεδιάστηκε μαζί, με πλήρη υποστήριξη ελληνικού μονοτονικού.</p>
+
+        <div class="specimen">
+          <div class="label">Display · 64 px / 1.1</div>
+          <p class="display" style="font-size: var(--fs-display);">Νέος αέρας στη Λέσβο</p>
+        </div>
+        <div class="specimen">
+          <div class="label">H1 · Τίτλος άρθρου</div>
+          <p class="h1">Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα</p>
+        </div>
+        <div class="specimen">
+          <div class="label">H2 · Δευτερεύων τίτλος</div>
+          <p class="h2">Οι αντιδράσεις φορέων και κατοίκων μετά τη δημοσίευση της μελέτης</p>
+        </div>
+        <div class="specimen">
+          <div class="label">H3 · Ενότητα εντός άρθρου</div>
+          <p class="h3">Τι αλλάζει στη χρήση του χώρου</p>
+        </div>
+        <div class="specimen">
+          <div class="label">Standfirst · Υπότιτλος άρθρου (serif italic)</div>
+          <p class="standfirst">Η νέα πρόταση επιχειρεί να συμφιλιώσει τις ανάγκες της τοπικής κοινωνίας με τις δεσμεύσεις για την προστασία του περιβάλλοντος και την αναβάθμιση του δημόσιου χώρου.</p>
+        </div>
+        <div class="specimen">
+          <div class="label">Body · Κυρίως κείμενο (serif, 17/18 px)</div>
+          <p class="body-serif">Η δημοτική αρχή παρουσίασε τη Δευτέρα το αναθεωρημένο σχέδιο για τον παραλιακό άξονα της Μυτιλήνης, σε μια προσπάθεια να ενσωματώσει τις παρατηρήσεις που κατατέθηκαν στη δημόσια διαβούλευση. Η βασική παρέμβαση αφορά τη διαπλάτυνση του πεζοδρομίου στην πλευρά της προκυμαίας και την αντικατάσταση μέρους της υπάρχουσας οδοστρωσίας με υλικά μικρότερης θερμικής αντανάκλασης.</p>
+        </div>
+        <div class="specimen">
+          <div class="label">Body · Εναλλακτικό sans (για UI-heavy σελίδες)</div>
+          <p class="body-sans">Η δημοτική αρχή παρουσίασε τη Δευτέρα το αναθεωρημένο σχέδιο για τον παραλιακό άξονα της Μυτιλήνης. Το sans χρησιμοποιείται επιλεκτικά — φόρμες, πίνακες αποτελεσμάτων, πλαίσια ρυθμίσεων — όχι στο κυρίως κείμενο.</p>
+        </div>
+        <div class="specimen">
+          <div class="label">Caption · Λεζάντα εικόνας</div>
+          <p class="caption">Άποψη της προκυμαίας της Μυτιλήνης από την πλευρά του λιμανιού, Απρίλιος 2026. <em>Φωτογραφία: Αρχείο stonisi.gr</em></p>
+        </div>
+        <div class="specimen">
+          <div class="label">Meta · Ημερομηνία, συντάκτης</div>
+          <p class="meta">Δευτέρα 20 Απριλίου 2026 · 10:42 · Μαρία Παπαδοπούλου</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOUR -->
+    <section class="block warm" id="colour">
+      <div class="wrap">
+        <h2 class="block-title">Χρώμα</h2>
+        <p class="block-intro">Ένα βαθύ σκούρο ναυτικό (η απόχρωση του λογότυπου) στηρίζει την παλέτα. Λευκό χαρτί, μια παλέτα τόνων μπλε, και ένα μοναδικό κόκκινο που προορίζεται αποκλειστικά για σήμανση ζωντανής είδησης.</p>
+
+        <h3 class="sub">Μελάνι και ουδέτερα</h3>
+        <div class="swatches">
+          <div class="swatch"><div class="chip" style="background: #0A1A33;"><span>AAA</span></div><div class="meta"><strong>--ink</strong><code>#0A1A33</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #4A5668;"><span>AAA</span></div><div class="meta"><strong>--ink-muted</strong><code>#4A5668</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #6E7887;"><span>AA</span></div><div class="meta"><strong>--ink-quiet</strong><code>#6E7887</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #FFFFFF; border: 1px solid var(--rule);"><span>paper</span></div><div class="meta"><strong>--paper</strong><code>#FFFFFF</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #FAFAFB; border: 1px solid var(--rule);"><span>warm</span></div><div class="meta"><strong>--paper-warm</strong><code>#FAFAFB</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #DCE2EA;"><span>rule</span></div><div class="meta"><strong>--rule</strong><code>#DCE2EA</code></div></div>
+        </div>
+
+        <h3 class="sub">Brand · Μπλε</h3>
+        <div class="swatches">
+          <div class="swatch"><div class="chip" style="background: #0F2A52;"><span>AAA</span></div><div class="meta"><strong>--brand</strong><code>#0F2A52</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #1F4788;"><span>AAA</span></div><div class="meta"><strong>--brand-link</strong><code>#1F4788</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #C9D6EC;"><span>tint 2</span></div><div class="meta"><strong>--brand-tint-2</strong><code>#C9D6EC</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #E8EEF8;"><span>tint</span></div><div class="meta"><strong>--brand-tint</strong><code>#E8EEF8</code></div></div>
+        </div>
+
+        <h3 class="sub">Σημαντικά (χρησιμοποιούνται πάντα με εικονίδιο + λεκτικό)</h3>
+        <div class="swatches">
+          <div class="swatch"><div class="chip" style="background: #C8102E;"><span>live</span></div><div class="meta"><strong>--live</strong><code>#C8102E</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #1F6B4A;"><span>success</span></div><div class="meta"><strong>--success</strong><code>#1F6B4A</code></div></div>
+          <div class="swatch"><div class="chip" style="background: #8C5A00;"><span>warn</span></div><div class="meta"><strong>--warn</strong><code>#8C5A00</code></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHIPS -->
+    <section class="block" id="chips">
+      <div class="wrap">
+        <h2 class="block-title">Ετικέτες ενότητας</h2>
+        <p class="block-intro">Οι έξι κεντρικές κατηγορίες, ως πρωτεύον στοιχείο πλοήγησης. Sans 600, letterspacing, ορθογώνιες άκρες.</p>
+
+        <h3 class="sub">Solid (σε λευκό)</h3>
+        <div class="chip-set">
+          <a class="chip solid" href="#">ΛΕΣΒΟΣ</a>
+          <a class="chip solid" href="#">ΚΟΙΝΩΝΙΑ</a>
+          <a class="chip solid" href="#">ΟΙΚΟΝΟΜΙΑ</a>
+          <a class="chip solid" href="#">ΑΘΛΗΤΙΣΜΟΣ</a>
+          <a class="chip solid" href="#">ΠΟΛΙΤΙΣΜΟΣ</a>
+          <a class="chip solid" href="#">ΑΠΟΨΕΙΣ</a>
+        </div>
+
+        <h3 class="sub">Outline (σε λευκό)</h3>
+        <div class="chip-set">
+          <a class="chip outline" href="#">ΛΕΣΒΟΣ</a>
+          <a class="chip outline" href="#">ΚΟΙΝΩΝΙΑ</a>
+          <a class="chip outline" href="#">ΟΙΚΟΝΟΜΙΑ</a>
+          <a class="chip outline" href="#">ΑΘΛΗΤΙΣΜΟΣ</a>
+          <a class="chip outline" href="#">ΠΟΛΙΤΙΣΜΟΣ</a>
+          <a class="chip outline" href="#">ΑΠΟΨΕΙΣ</a>
+        </div>
+
+        <h3 class="sub">Ζωντανή είδηση</h3>
+        <div class="chip-set" style="align-items: center;">
+          <span class="live" aria-label="Ζωντανά"><span aria-hidden="true"></span>Ζωντανά</span>
+          <span class="live" aria-label="Εκτακτο"><span aria-hidden="true"></span>Έκτακτο</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MASTHEAD -->
+    <section class="block tint" id="masthead">
+      <div class="wrap">
+        <h2 class="block-title">Μετωπίδα (Masthead)</h2>
+        <p class="block-intro">Προεπισκόπηση της μετωπίδας σε desktop, με τις έξι κατηγορίες και το ζωντανό ενδεικτικό.</p>
+
+        <div class="masthead" role="region" aria-label="Προεπισκόπηση μετωπίδας">
+          <div class="strip">
+            <span class="brand">ΣΤΟΝΗΣΙ</span>
+            <span class="live" aria-label="Ζωντανή κάλυψη" style="color: #fff;"><span style="background:#fff;" aria-hidden="true"></span>Ζωντανά</span>
+            <span class="spacer"></span>
+            <a href="#">Αναζήτηση</a>
+            <a href="#">Newsletter</a>
+            <a href="#">Σύνδεση</a>
+          </div>
+          <nav aria-label="Κύρια πλοήγηση">
+            <a href="#" class="current">ΛΕΣΒΟΣ</a>
+            <a href="#">ΚΟΙΝΩΝΙΑ</a>
+            <a href="#">ΟΙΚΟΝΟΜΙΑ</a>
+            <a href="#">ΑΘΛΗΤΙΣΜΟΣ</a>
+            <a href="#">ΠΟΛΙΤΙΣΜΟΣ</a>
+            <a href="#">ΑΠΟΨΕΙΣ</a>
+            <a href="#">ΠΟΛΥΜΕΣΑ</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="block" id="cards">
+      <div class="wrap">
+        <h2 class="block-title">Κάρτες άρθρου</h2>
+        <p class="block-intro">Τρεις κολόνες σε desktop, δύο σε tablet, μία σε κινητό. Χωρίς σκιές — η ιεραρχία ορίζεται από την τυπογραφία και τον λευκό χώρο.</p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="img photo-1" role="img" aria-label="Άποψη της Μυτιλήνης"></div>
+            <span class="kicker">ΛΕΣΒΟΣ</span>
+            <h3>Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα</h3>
+            <span class="meta">Πριν από 2 ώρες · Μαρία Παπαδοπούλου</span>
+          </article>
+          <article class="card">
+            <div class="img photo-2" role="img" aria-label="Κτίριο δημαρχείου"></div>
+            <span class="kicker">ΚΟΙΝΩΝΙΑ</span>
+            <h3>Τι προβλέπει η νέα συμφωνία για τα σχολικά δρομολόγια στα χωριά</h3>
+            <span class="meta">Πριν από 4 ώρες · Γιώργος Αλεξίου</span>
+          </article>
+          <article class="card">
+            <div class="img photo-3" role="img" aria-label="Λιμάνι της Μυτιλήνης"></div>
+            <span class="kicker">ΟΙΚΟΝΟΜΙΑ</span>
+            <h3>Η τουριστική περίοδος ξεκινά με αυξημένες κρατήσεις, αλλά λιγότερες πτήσεις</h3>
+            <span class="meta">Χθες · Δημήτρης Βασιλείου</span>
+          </article>
+          <article class="card">
+            <div class="img photo-4" role="img" aria-label="Γήπεδο ποδοσφαίρου"></div>
+            <span class="kicker">ΑΘΛΗΤΙΣΜΟΣ</span>
+            <h3>Ιστορική νίκη για τον Αιολικό, σε παιχνίδι που κρίθηκε στο τελευταίο λεπτό</h3>
+            <span class="meta">Χθες · Σπύρος Μαυρογιάννης</span>
+          </article>
+          <article class="card">
+            <div class="img photo-5" role="img" aria-label="Έκθεση τέχνης"></div>
+            <span class="kicker">ΠΟΛΙΤΙΣΜΟΣ</span>
+            <h3>Στο Μουσείο Σύγχρονης Τέχνης, μια έκθεση αφιερωμένη στο Αιγαίο</h3>
+            <span class="meta">Προχθές · Αναστασία Ιωάννου</span>
+          </article>
+          <article class="card">
+            <div class="img photo-6" role="img" aria-label="Γραφείο γνώμης"></div>
+            <span class="kicker">ΑΠΟΨΕΙΣ</span>
+            <h3>Ο λόγος της αυτοδιοίκησης, ο χρόνος της κεντρικής εξουσίας</h3>
+            <span class="meta">Προχθές · Παναγιώτης Σταυρίδης</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE -->
+    <section class="block warm" id="article">
+      <div class="wrap">
+        <h2 class="block-title">Σελίδα άρθρου (απόσπασμα)</h2>
+        <p class="block-intro">Η τυπογραφία σε πλήρη αποστολή: kicker, H1, standfirst, byline, drop-cap, και σωστό μέτρο (62–72 χαρακτήρες).</p>
+
+        <article class="article">
+          <p class="kicker">ΛΕΣΒΟΣ · Παραλιακός άξονας</p>
+          <h1>Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα</h1>
+          <p class="standfirst">Η νέα πρόταση της δημοτικής αρχής επιχειρεί να συμφιλιώσει τις ανάγκες της τοπικής κοινωνίας με τις δεσμεύσεις για την προστασία του περιβάλλοντος και την αναβάθμιση του δημόσιου χώρου.</p>
+          <p class="byline">Μαρία Παπαδοπούλου · Δευτέρα 20 Απριλίου 2026, 10:42</p>
+          <div class="body">
+            <p>Η δημοτική αρχή παρουσίασε τη Δευτέρα το αναθεωρημένο σχέδιο για τον παραλιακό άξονα της Μυτιλήνης, σε μια προσπάθεια να ενσωματώσει τις παρατηρήσεις που κατατέθηκαν στη δημόσια διαβούλευση. Η βασική παρέμβαση αφορά τη διαπλάτυνση του πεζοδρομίου στην πλευρά της προκυμαίας και την αντικατάσταση μέρους της υπάρχουσας οδοστρωσίας με υλικά μικρότερης θερμικής αντανάκλασης.</p>
+            <p>Κατά τη διάρκεια της παρουσίασης, ο αντιδήμαρχος τεχνικών υπηρεσιών υπογράμμισε ότι το αναθεωρημένο σχέδιο διατηρεί τον αρχικό στόχο: να αποδοθεί ξανά στους κατοίκους και τους επισκέπτες ένας δημόσιος χώρος που είχε, με τα χρόνια, μετατραπεί σε εκτεταμένο πάρκινγκ. «Δεν πρόκειται για έργο καλλωπισμού», σημείωσε. «Είναι παρέμβαση στον τρόπο που χρησιμοποιούμε την πόλη».</p>
+            <p>Το νέο σχέδιο αναμένεται να κατατεθεί επισήμως στο δημοτικό συμβούλιο τον Μάιο, ενώ η υλοποίησή του τοποθετείται, σύμφωνα με τον προγραμματισμό, στο πρώτο εξάμηνο του 2027.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="block" id="newsletter">
+      <div class="wrap">
+        <h2 class="block-title">Newsletter</h2>
+        <p class="block-intro">Το σχεδιαστικό σύστημα προβλέπει πλαίσιο εγγραφής στο newsletter. Η συνιστώσα θα ενεργοποιηθεί όταν ξεκινήσει το πρόγραμμα.</p>
+
+        <div class="newsletter">
+          <div>
+            <h3>Η ημέρα στο νησί, κάθε πρωί στο email σας</h3>
+            <p>Μια σύνοψη της Λέσβου και του Βορείου Αιγαίου — επιλογές της σύνταξης, πριν το πρώτο σας καφέ.</p>
+          </div>
+          <form onsubmit="event.preventDefault(); this.querySelector('[role=status]').textContent='Ευχαριστούμε — σας στείλαμε email επιβεβαίωσης.';">
+            <label class="visually-hidden" for="nl-email">Email</label>
+            <input id="nl-email" type="email" placeholder="Το email σας" required>
+            <button class="btn primary" type="submit">Εγγραφή</button>
+          </form>
+          <p role="status" aria-live="polite" style="grid-column: 1 / -1; font-family: var(--sans); font-size: var(--fs-meta); color: var(--success); margin: 0;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADS -->
+    <section class="block warm" id="ads">
+      <div class="wrap">
+        <h2 class="block-title">Διαφημιστικές θέσεις</h2>
+        <p class="block-intro">Σταθερή γεωμετρία ανά breakpoint — καμία μετατόπιση διάταξης όταν λείπει η διαφήμιση. Κάθε θέση φέρει εμφανή ετικέτα «Διαφήμιση».</p>
+
+        <div class="ad-wrap">
+          <span class="label">Διαφήμιση · Leaderboard</span>
+          <div class="ad-box leaderboard">970 × 250 / 728 × 100</div>
+        </div>
+
+        <div style="display: grid; gap: var(--sp-5); grid-template-columns: 1fr; align-items: start;">
+          <div style="display:flex; gap: var(--sp-5); flex-wrap: wrap;">
+            <div class="ad-wrap" style="flex: 1; min-width: 260px;">
+              <span class="label">Διαφήμιση · In-article MPU</span>
+              <div class="ad-box mpu">300 × 280</div>
+            </div>
+            <div class="ad-wrap" style="flex: 1; min-width: 260px;">
+              <span class="label">Διαφήμιση · Sidebar</span>
+              <div class="ad-box sidebar">300 × 600</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section class="block" id="buttons">
+      <div class="wrap">
+        <h2 class="block-title">Κουμπιά</h2>
+        <p class="block-intro">Τρεις παραλλαγές. Ελάχιστο πλάτος/ύψος 44 × 44 px. Εμφανές δακτυλίδι εστίασης.</p>
+
+        <div class="btn-set">
+          <a class="btn primary" href="#">Εγγραφή</a>
+          <a class="btn secondary" href="#">Διάβασε περισσότερα</a>
+          <a class="btn quiet" href="#">Παράλειψη</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section class="block warm" id="forms">
+      <div class="wrap">
+        <h2 class="block-title">Πεδία φόρμας</h2>
+        <p class="block-intro">Η ετικέτα είναι πάντα ορατή πάνω από το πεδίο. Τα μηνύματα σφάλματος δεν βασίζονται μόνο στο χρώμα.</p>
+
+        <div style="display: grid; gap: var(--sp-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="field">
+            <label for="f1">Διεύθυνση email</label>
+            <input id="f1" type="email" value="maria@example.gr">
+            <span class="hint">Θα χρησιμοποιηθεί μόνο για το newsletter.</span>
+          </div>
+          <div class="field">
+            <label for="f2">Όνομα χρήστη</label>
+            <input id="f2" type="text" value="" aria-invalid="true" aria-describedby="f2-err">
+            <span class="error" id="f2-err">Το πεδίο είναι υποχρεωτικό.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPACING -->
+    <section class="block" id="spacing">
+      <div class="wrap">
+        <h2 class="block-title">Κλίμακα απόστασης</h2>
+        <p class="block-intro">Βάση 4 px. Τα tokens χρησιμοποιούνται για padding, gap και margin — όχι αυθαίρετες τιμές.</p>
+
+        <div>
+          <div class="spacing-row"><code>--sp-1</code><span>4 px</span><div class="bar" style="width: 4px;"></div></div>
+          <div class="spacing-row"><code>--sp-2</code><span>8 px</span><div class="bar" style="width: 8px;"></div></div>
+          <div class="spacing-row"><code>--sp-3</code><span>12 px</span><div class="bar" style="width: 12px;"></div></div>
+          <div class="spacing-row"><code>--sp-4</code><span>16 px</span><div class="bar" style="width: 16px;"></div></div>
+          <div class="spacing-row"><code>--sp-5</code><span>24 px</span><div class="bar" style="width: 24px;"></div></div>
+          <div class="spacing-row"><code>--sp-6</code><span>32 px</span><div class="bar" style="width: 32px;"></div></div>
+          <div class="spacing-row"><code>--sp-7</code><span>48 px</span><div class="bar" style="width: 48px;"></div></div>
+          <div class="spacing-row"><code>--sp-8</code><span>64 px</span><div class="bar" style="width: 64px;"></div></div>
+          <div class="spacing-row"><code>--sp-9</code><span>96 px</span><div class="bar" style="width: 96px;"></div></div>
+          <div class="spacing-row"><code>--sp-10</code><span>128 px</span><div class="bar" style="width: 128px;"></div></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <p style="margin: 0;">stonisi.gr — Style guide · Phase 2 of 5 · Για παρατηρήσεις, επιστρέψτε στο Claude.</p>
+    </div>
+  </footer>
+</body>
+</html>

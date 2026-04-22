@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>stonisi.gr — Font bake-off</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Commissioner:wght@400;500;600;700&family=GFS+Didot&family=Lora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap&subset=greek,greek-ext" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0A1A33;
+      --ink-muted: #4A5668;
+      --ink-quiet: #6E7887;
+      --brand: #0F2A52;
+      --brand-link: #1F4788;
+      --brand-tint: #E8EEF8;
+      --brand-tint-2: #C9D6EC;
+      --rule: #DCE2EA;
+      --paper: #FFFFFF;
+      --paper-warm: #FAFAFB;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      margin: 0;
+      background: var(--paper-warm);
+      color: var(--ink);
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 1400px; margin: 0 auto; padding: 48px 24px; }
+
+    header.lead {
+      background: var(--brand);
+      color: #fff;
+      padding: 64px 24px 48px;
+    }
+    header.lead .inner { max-width: 900px; margin: 0 auto; }
+    header.lead h1 {
+      font-family: "Source Serif 4", serif;
+      font-weight: 600;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+    header.lead p {
+      font-family: "Source Sans 3", sans-serif;
+      color: #BFD0ED;
+      max-width: 62ch;
+      margin: 0;
+      font-size: 19px;
+    }
+    header.lead .kicker {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8FB4E8;
+      margin-bottom: 12px;
+    }
+
+    /* toggle bar */
+    .controls {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+      padding: 12px 24px;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    .controls label { font-size: 13px; color: var(--ink-muted); margin-right: 8px; }
+    .controls button {
+      font-family: "Source Sans 3", sans-serif; font-weight: 600;
+      font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 8px 14px;
+      border: 1px solid var(--brand);
+      background: transparent; color: var(--brand);
+      border-radius: 4px; cursor: pointer;
+      transition: background 160ms, color 160ms;
+    }
+    .controls button.active { background: var(--brand); color: var(--paper); }
+    .controls button:hover:not(.active) { background: var(--brand-tint); }
+
+    /* specimen grid */
+    .grid {
+      display: grid; gap: 32px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 1100px) {
+      .grid.layout-side-by-side { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 18px;
+      position: relative;
+    }
+    .card .badge {
+      position: absolute; top: 16px; right: 16px;
+      font-family: "Source Sans 3", sans-serif; font-weight: 600;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--brand-tint); color: var(--brand);
+      padding: 4px 8px; border-radius: 4px;
+    }
+    .card .pair {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 13px; color: var(--ink-quiet);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 12px; margin-bottom: 6px;
+    }
+    .card h2.pair-name {
+      font-family: "Source Sans 3", sans-serif;
+      font-weight: 600; font-size: 20px; color: var(--ink);
+      margin: 0 0 4px;
+      letter-spacing: 0.01em;
+    }
+    .card .rationale {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 14px; color: var(--ink-muted); line-height: 1.5;
+      margin: 0 0 8px;
+      max-width: 52ch;
+    }
+
+    /* per-pairing font application */
+    .pair-A .display, .pair-A .h1, .pair-A .h3, .pair-A .standfirst, .pair-A .body p, .pair-A .body p:first-of-type::first-letter { font-family: "Source Serif 4", "Noto Serif", serif; }
+    .pair-A .kicker, .pair-A .meta, .pair-A .chip { font-family: "Source Sans 3", "Noto Sans", sans-serif; }
+
+    .pair-B .display, .pair-B .h1, .pair-B .h3, .pair-B .standfirst, .pair-B .body p, .pair-B .body p:first-of-type::first-letter { font-family: "Literata", "Noto Serif", serif; }
+    .pair-B .kicker, .pair-B .meta, .pair-B .chip { font-family: "Commissioner", "Noto Sans", sans-serif; }
+
+    .pair-C .display, .pair-C .h1 { font-family: "GFS Didot", "Noto Serif", serif; }
+    .pair-C .h3, .pair-C .standfirst, .pair-C .body p, .pair-C .body p:first-of-type::first-letter { font-family: "Source Serif 4", "Noto Serif", serif; }
+    .pair-C .kicker, .pair-C .meta, .pair-C .chip { font-family: "Source Sans 3", "Noto Sans", sans-serif; }
+
+    .pair-D .display, .pair-D .h1, .pair-D .h3, .pair-D .standfirst, .pair-D .body p, .pair-D .body p:first-of-type::first-letter { font-family: "Lora", "Noto Serif", serif; }
+    .pair-D .kicker, .pair-D .meta, .pair-D .chip { font-family: "Inter", "Noto Sans", sans-serif; }
+
+    /* type elements */
+    .display {
+      font-weight: 600; line-height: 1.1;
+      font-size: 38px;
+      margin: 0;
+      color: var(--ink);
+    }
+    .chip {
+      display: inline-block;
+      font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--brand-link);
+      margin: 0;
+    }
+    .h1 {
+      font-weight: 600; font-size: 28px; line-height: 1.2;
+      margin: 0;
+      color: var(--ink);
+    }
+    .rule {
+      width: 48px; height: 2px; background: var(--brand-tint-2); margin: 4px 0;
+    }
+    .standfirst {
+      font-style: italic; font-size: 18px; line-height: 1.5;
+      color: var(--ink-muted);
+      margin: 0;
+      max-width: 52ch;
+    }
+    .byline {
+      font-family: "Source Sans 3", sans-serif !important;
+      font-size: 13px; color: var(--ink-quiet);
+      margin: 0;
+    }
+    .body p {
+      font-size: 17px; line-height: 1.6;
+      margin: 0 0 12px;
+      color: var(--ink);
+      max-width: 52ch;
+    }
+    .body p:first-of-type::first-letter {
+      font-weight: 700; font-size: 3.2em;
+      float: left; line-height: 0.9; margin: 0.05em 10px 0 0;
+      color: var(--brand);
+    }
+    .h3 {
+      font-weight: 600; font-size: 22px; line-height: 1.2;
+      margin: 8px 0 0;
+      color: var(--ink);
+    }
+
+    /* Greek stress-tests */
+    .stress {
+      background: var(--brand-tint);
+      border-radius: 6px;
+      padding: 20px 22px;
+      margin-top: 8px;
+    }
+    .stress .label {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--brand); margin-bottom: 10px;
+      display: block;
+    }
+    .stress .line { margin-bottom: 6px; }
+    .stress .small { font-size: 13px; }
+    .stress .medium { font-size: 17px; }
+    .stress .large { font-size: 22px; font-weight: 600; }
+    .stress .xlarge { font-size: 32px; font-weight: 600; line-height: 1.1; }
+
+    /* notes */
+    .notes {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 24px;
+      margin-top: 32px;
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 15px;
+      color: var(--ink-muted);
+    }
+    .notes h3 {
+      font-family: "Source Serif 4", serif;
+      font-weight: 600; font-size: 20px;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+    .notes ul { margin: 0; padding-left: 20px; }
+    .notes li { margin-bottom: 8px; }
+    .notes strong { color: var(--ink); }
+
+    .tagline-hero {
+      font-weight: 600; line-height: 1.1;
+      margin: 24px 0 0;
+      color: var(--brand);
+    }
+  </style>
+</head>
+<body>
+  <header class="lead">
+    <div class="inner">
+      <p class="kicker">Phase 2 · Font bake-off · stonisi.gr</p>
+      <h1>Τέσσερις τυπογραφικές συζεύξεις, το ίδιο ελληνικό περιεχόμενο</h1>
+      <p>Η κάθε κάρτα παρακάτω εφαρμόζει ένα διαφορετικό font-pair στον ίδιο τίτλο, standfirst και κυρίως κείμενο. Αξιολογήστε την ανάγνωση, τον τόνο και τον χαρακτήρα του ελληνικού αλφαβήτου. Η σύζευξη Α παραμένει η πρότασή μας· οι υπόλοιπες είναι εναλλακτικές.</p>
+    </div>
+  </header>
+
+  <div class="controls" role="tablist" aria-label="Διάταξη σύγκρισης">
+    <label>Διάταξη:</label>
+    <button type="button" id="bSide" class="active">Δίπλα-δίπλα</button>
+    <button type="button" id="bStack">Στοιβαγμένα (μεγαλύτερα)</button>
+  </div>
+
+  <main class="wrap">
+    <div class="grid layout-side-by-side" id="grid">
+
+      <!-- PAIRING A -->
+      <article class="card pair-A">
+        <span class="badge">Σύσταση</span>
+        <div class="pair">Σύζευξη A</div>
+        <h2 class="pair-name">Source Serif 4 + Source Sans 3</h2>
+        <p class="rationale">Ήρεμο σύγχρονο editorial serif, πλήρης υποστήριξη ελληνικών, optical sizes από 14 έως 72 px. Ανοιχτού κώδικα. Η σύζευξη σχεδιάστηκε μαζί — οι δύο οικογένειες μοιράζονται ύψος x και άξονα.</p>
+
+        <span class="chip">ΛΕΣΒΟΣ · ΠΑΡΑΛΙΑΚΟΣ ΑΞΟΝΑΣ</span>
+        <h3 class="h1">Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα</h3>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="standfirst">Η νέα πρόταση της δημοτικής αρχής επιχειρεί να συμφιλιώσει τις ανάγκες της τοπικής κοινωνίας με τις δεσμεύσεις για την προστασία του περιβάλλοντος.</p>
+        <p class="byline">Μαρία Παπαδοπούλου · Δευτέρα 20 Απριλίου 2026</p>
+        <div class="body">
+          <p>Η δημοτική αρχή παρουσίασε τη Δευτέρα το αναθεωρημένο σχέδιο για τον παραλιακό άξονα της Μυτιλήνης, σε μια προσπάθεια να ενσωματώσει τις παρατηρήσεις που κατατέθηκαν στη δημόσια διαβούλευση.</p>
+          <p>Η βασική παρέμβαση αφορά τη διαπλάτυνση του πεζοδρομίου στην πλευρά της προκυμαίας και την αντικατάσταση μέρους της υπάρχουσας οδοστρωσίας.</p>
+        </div>
+
+        <div class="stress">
+          <span class="label">Δοκιμή ελληνικών χαρακτήρων</span>
+          <div class="line small">Αβγδεζηθικλμνξοπρστυφχψω · άέίόύήώΐΰ · Η ΕΠΟΜΕΝΗ ΗΜΕΡΑ</div>
+          <div class="line medium">Αβγδεζηθικλμνξοπρστυφχψω · άέίόύήώ</div>
+          <div class="line large">Νέος αέρας στη Λέσβο</div>
+          <div class="line xlarge">ΝΕΟΣ ΑΕΡΑΣ</div>
+        </div>
+      </article>
+
+      <!-- PAIRING B -->
+      <article class="card pair-B">
+        <div class="pair">Σύζευξη B</div>
+        <h2 class="pair-name">Literata + Commissioner</h2>
+        <p class="rationale">Ελαφρώς πιο θερμό serif με περισσότερη προσωπικότητα στις καμπύλες· Commissioner ως πιο σύγχρονο sans με επίσης άριστη ελληνική υποστήριξη. Πιο κοντά σε "magazine" αίσθηση χωρίς να χάνει σοβαρότητα.</p>
+
+        <span class="chip">ΛΕΣΒΟΣ · ΠΑΡΑΛΙΑΚΟΣ ΑΞΟΝΑΣ</span>
+        <h3 class="h1">Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα</h3>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="standfirst">Η νέα πρόταση της δημοτικής αρχής επιχειρεί να συμφιλιώσει τις ανάγκες της τοπικής κοινωνίας με τις δεσμεύσεις για την προστασία του περιβάλλοντος.</p>
+        <p class="byline">Μαρία Παπαδοπούλου · Δευτέρα 20 Απριλίου 2026</p>
+        <div class="body">
+          <p>Η δημοτική αρχή παρουσίασε τη Δευτέρα το αναθεωρημένο σχέδιο για τον παραλιακό άξονα της Μυτιλήνης, σε μια προσπάθεια να ενσωματώσει τις παρατηρήσεις που κατατέθηκαν στη δημόσια διαβούλευση.</p>
+          <p>Η βασική παρέμβαση αφορά τη διαπλάτυνση του πεζοδρομίου στην πλευρά της προκυμαίας και την αντικατάσταση μέρους της υπάρχουσας οδοστρωσίας.</p>
+        </div>
+
+        <div class="stress">
+          <span class="label">Δοκιμή ελληνικών χαρακτήρων</span>
+          <div class="line small">Αβγδεζηθικλμνξοπρστυφχψω · άέίόύήώΐΰ · Η ΕΠΟΜΕΝΗ ΗΜΕΡΑ</div>
+          <div class="line medium">Αβγδεζηθικλμνξοπρστυφχψω · άέίόύήώ</div>
+          <div class="line large">Νέος αέρας στη Λέσβο</div>
+          <div class="line xlarge">ΝΕΟΣ ΑΕΡΑΣ</div>
+        </div>
+      </article>
+
+      <!-- PAIRING C -->
+      <article class="card pair-C">
+        <div class="pair">Σύζευξη C</div>
+        <h2 class="pair-name">GFS Didot (display) + Source Serif 4 + Source Sans 3</h2>
+        <p class="rationale">Τριφωνική λύση: το GFS Didot — σχεδιασμένο από την Greek Font Society ειδικά για την ελληνική γλώσσα — αναλαμβάνει hero και H1, το Source Serif 4 το κυρίως κείμενο, το Source Sans 3 το UI. Φέρει ελληνική τυπογραφική κληρονομιά, χωρίς να γίνεται ρετρό.</p>
+
+        <span class="chip">ΛΕΣΒΟΣ · ΠΑΡΑΛΙΑΚΟΣ ΑΞΟΝΑΣ</span>
+        <h3 class="h1">Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα</h3>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="standfirst">Η νέα πρόταση της δημοτικής αρχής επιχειρεί να συμφιλιώσει τις ανάγκες της τοπικής κοινωνίας με τις δεσμεύσεις για την προστασία του περιβάλλοντος.</p>
+        <p class="byline">Μαρία Παπαδοπούλου · Δευτέρα 20 Απριλίου 2026</p>
+        <div class="body">
+          <p>Η δημοτική αρχή παρουσίασε τη Δευτέρα το αναθεωρημένο σχέδιο για τον παραλιακό άξονα της Μυτιλήνης, σε μια προσπάθεια να ενσωματώσει τις παρατηρήσεις που κατατέθηκαν στη δημόσια διαβούλευση.</p>
+          <p>Η βασική παρέμβαση αφορά τη διαπλάτυνση του πεζοδρομίου στην πλευρά της προκυμαίας και την αντικατάσταση μέρους της υπάρχουσας οδοστρωσίας.</p>
+        </div>
+
+        <div class="stress">
+          <span class="label">Δοκιμή ελληνικών χαρακτήρων (GFS Didot σε μεγάλα μεγέθη)</span>
+          <div class="line small" style="font-family: 'Source Serif 4', serif;">Αβγδεζηθικλμνξοπρστυφχψω · άέίόύήώ</div>
+          <div class="line medium" style="font-family: 'Source Serif 4', serif;">Αβγδεζηθικλμνξοπρστυφχψω · άέίόύήώ</div>
+          <div class="line large" style="font-family: 'GFS Didot', serif;">Νέος αέρας στη Λέσβο</div>
+          <div class="line xlarge" style="font-family: 'GFS Didot', serif;">ΝΕΟΣ ΑΕΡΑΣ</div>
+        </div>
+      </article>
+
+      <!-- PAIRING D -->
+      <article class="card pair-D">
+        <div class="pair">Σύζευξη D</div>
+        <h2 class="pair-name">Lora + Inter</h2>
+        <p class="rationale">Πιο στρογγυλό, "φιλικό" serif με ξεκάθαρο ελληνικό σχεδιασμό· Inter ως ουδέτερο, καθαρό UI sans. Λιγότερο επίσημο απ' όλα τα υπόλοιπα — πιο κοντά σε σύγχρονη ψηφιακή-native αισθητική.</p>
+
+        <span class="chip">ΛΕΣΒΟΣ · ΠΑΡΑΛΙΑΚΟΣ ΑΞΟΝΑΣ</span>
+        <h3 class="h1">Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα</h3>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="standfirst">Η νέα πρόταση της δημοτικής αρχής επιχειρεί να συμφιλιώσει τις ανάγκες της τοπικής κοινωνίας με τις δεσμεύσεις για την προστασία του περιβάλλοντος.</p>
+        <p class="byline">Μαρία Παπαδοπούλου · Δευτέρα 20 Απριλίου 2026</p>
+        <div class="body">
+          <p>Η δημοτική αρχή παρουσίασε τη Δευτέρα το αναθεωρημένο σχέδιο για τον παραλιακό άξονα της Μυτιλήνης, σε μια προσπάθεια να ενσωματώσει τις παρατηρήσεις που κατατέθηκαν στη δημόσια διαβούλευση.</p>
+          <p>Η βασική παρέμβαση αφορά τη διαπλάτυνση του πεζοδρομίου στην πλευρά της προκυμαίας και την αντικατάσταση μέρους της υπάρχουσας οδοστρωσίας.</p>
+        </div>
+
+        <div class="stress">
+          <span class="label">Δοκιμή ελληνικών χαρακτήρων</span>
+          <div class="line small">Αβγδεζηθικλμνξοπρστυφχψω · άέίόύήώΐΰ · Η ΕΠΟΜΕΝΗ ΗΜΕΡΑ</div>
+          <div class="line medium">Αβγδεζηθικλμνξοπρστυφχψω · άέίόύήώ</div>
+          <div class="line large">Νέος αέρας στη Λέσβο</div>
+          <div class="line xlarge">ΝΕΟΣ ΑΕΡΑΣ</div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="notes">
+      <h3>Πώς να αξιολογήσετε τις επιλογές</h3>
+      <ul>
+        <li><strong>Δείτε τους τόνους:</strong> πώς αποδίδονται τα ά, έ, ί, ό, ύ, ή, ώ, ειδικά σε μικρά μεγέθη.</li>
+        <li><strong>Κεφαλαία:</strong> οι ετικέτες ενότητας (ΛΕΣΒΟΣ, ΚΟΙΝΩΝΙΑ κ.ο.κ.) εμφανίζονται συνήθως σε κεφαλαία — αξιολογήστε τον χαρακτήρα.</li>
+        <li><strong>Χαρακτήρες ελέγχου:</strong> τα β, δ, θ, ξ, σ, φ, ψ είναι συνήθως οι πιο απαιτητικοί — ψάξτε για αδέξιες καμπύλες.</li>
+        <li><strong>Σωματικότητα:</strong> διαβάστε 10 δευτερόλεπτα το κυρίως κείμενο. Ποια σύζευξη "εξαφανίζεται" και σας αφήνει μόνο με το νόημα; Αυτή είναι η καλύτερη για ανάγνωση.</li>
+        <li><strong>Χαρακτήρας:</strong> ποια σύζευξη πηγαίνει τον τόνο στο σωστό σημείο — σοβαρός αλλά ζεστός, σύγχρονος αλλά όχι μοντέρνος;</li>
+      </ul>
+    </div>
+
+    <div class="notes">
+      <h3>Σύντομη κρίση</h3>
+      <ul>
+        <li><strong>A · Source Serif 4 + Source Sans 3</strong> — η πιο ουδέτερη, "αφανής" επιλογή. Ιδανική αν προτεραιότητα είναι η ανάγνωση. Κοντύτερα στην αισθητική του Kathimerini και του Claude product.</li>
+        <li><strong>B · Literata + Commissioner</strong> — ελαφρώς πιο ζεστή και με περισσότερη φωνή. Καλή αν θέλετε το site να έχει διακριτή "προσωπικότητα" χωρίς να γίνεται magazine.</li>
+        <li><strong>C · GFS Didot + Source Serif 4 + Source Sans 3</strong> — η πιο "ελληνική" επιλογή. Έχει editorial βαρύτητα στον hero, κρατά την αναγνωσιμότητα στο κείμενο. Καλή επιλογή αν η τοπική ταυτότητα είναι σχεδιαστική προτεραιότητα.</li>
+        <li><strong>D · Lora + Inter</strong> — η πιο digital-native. Πιο φιλική, λιγότερο επίσημη — ίσως περισσότερο από όσο ταιριάζει σε ένα regional broadsheet, αλλά προσφέρεται για σύγκριση.</li>
+      </ul>
+    </div>
+
+    <p class="tagline-hero" style="font-family: 'Source Serif 4', serif; font-size: 32px;">Επιλέξτε: A, B, C ή D.</p>
+  </main>
+
+  <script>
+    const grid = document.getElementById('grid');
+    const bSide = document.getElementById('bSide');
+    const bStack = document.getElementById('bStack');
+    bSide.addEventListener('click', () => {
+      grid.classList.add('layout-side-by-side');
+      bSide.classList.add('active'); bStack.classList.remove('active');
+    });
+    bStack.addEventListener('click', () => {
+      grid.classList.remove('layout-side-by-side');
+      bStack.classList.add('active'); bSide.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
