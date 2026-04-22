@@ -38,17 +38,28 @@
     menu.addEventListener('click', (e) => { if (e.target === menu) close(); });
   }
 
-  /* ---------- HERO SLIDER ---------- */
-  const slider = document.querySelector('[data-hero-slider]');
-  if (slider) {
+  /* ---------- HERO SLIDER (wrapped in a nested IIFE so early-exit is scoped) ---------- */
+  (function initHeroSlider () {
+    const slider = document.querySelector('[data-hero-slider]');
+    if (!slider) return;
     const slides = Array.from(slider.querySelectorAll('.hero-slide'));
     const dots   = Array.from(slider.querySelectorAll('.hero-dot'));
     const prev   = slider.querySelector('[data-hero-prev]');
     const next   = slider.querySelector('[data-hero-next]');
     const count  = slider.querySelector('[data-hero-count]');
+    const controls = slider.querySelector('.hero-controls');
+    // Full-bleed image backdrops — sit outside the centred wrap, crossfaded in sync.
+    const backdrops = Array.from(document.querySelectorAll('.hero__backdrop'));
     let index = 0;
     let timer = null;
     const AUTOPLAY_MS = 7000;
+
+    // If the CMS only returned one hero story, hide all the rotation chrome.
+    if (slides.length < 2) {
+      if (controls) controls.hidden = true;
+      if (slides[0]) slides[0].setAttribute('aria-hidden', 'false');
+      return; // no autoplay, no keyboard handlers
+    }
 
     const show = (i) => {
       index = (i + slides.length) % slides.length;
@@ -57,6 +68,9 @@
       });
       dots.forEach((d, idx) => {
         d.setAttribute('aria-current', idx === index ? 'true' : 'false');
+      });
+      backdrops.forEach((b, idx) => {
+        b.setAttribute('data-active', idx === index ? 'true' : 'false');
       });
       if (count) count.textContent = (index + 1) + ' / ' + slides.length;
     };
@@ -87,7 +101,7 @@
 
     show(0);
     start();
-  }
+  })();
 
   /* ---------- TEXT-TO-SPEECH (Web Speech API — open, browser-native) ----------
      Three states: not speaking → playing → paused. Pause/Resume preserves position.

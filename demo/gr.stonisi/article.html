@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα — ΣΤΟΝΗΣΙ</title>
+  <title>ΣΤΟΝΗΣΙ — Η Μυτιλήνη επανεξετάζει το σχέδιο για τον παραλιακό άξονα</title>
   <meta name="description" content="Η νέα πρόταση της δημοτικής αρχής επιχειρεί να συμφιλιώσει τις ανάγκες της τοπικής κοινωνίας με τις δεσμεύσεις για την προστασία του περιβάλλοντος.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,9 +38,23 @@
           <a href="#">Δρομολόγια</a>
         </nav>
         <span class="spacer"></span>
-        <a href="#">Αναζήτηση</a>
-        <a href="#">Newsletter</a>
-        <a href="#">Σύνδεση</a>
+        <nav class="lang-switch" aria-label="Επιλογή γλώσσας">
+          <a href="/" aria-current="page" lang="el" hreflang="el">EL</a>
+          <a href="/en/" lang="en" hreflang="en">EN</a>
+          <a href="/tr/" lang="tr" hreflang="tr">TR</a>
+        </nav>
+        <a class="strip-icon" href="#" aria-label="Αναζήτηση" title="Αναζήτηση">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M20 20l-4.3-4.3"/>
+          </svg>
+        </a>
+        <a class="strip-icon" href="#" aria-label="Σύνδεση" title="Σύνδεση / Εγγραφή">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c1.8-4 5-6 8-6s6.2 2 8 6"/>
+          </svg>
+        </a>
       </div>
     </div>
     <nav class="masthead__nav" aria-label="Κύρια πλοήγηση">
@@ -52,6 +66,8 @@
         <a href="#">ΠΟΛΙΤΙΣΜΟΣ</a>
         <a href="#">ΑΠΟΨΕΙΣ</a>
         <a href="#">ΠΟΛΥΜΕΣΑ</a>
+        <a href="index.html#agora">ΑΓΟΡΑ</a>
+        <a href="index.html#platia" style="color: #7A5D20;">ΠΛΑΤΕΙΑ</a>
       </div>
     </nav>
   </header>
@@ -194,10 +210,6 @@
           <!-- SIDEBAR -->
           <aside class="sidebar" aria-label="Δευτερεύον περιεχόμενο">
             <div class="sticky" style="display: flex; flex-direction: column; gap: var(--sp-5);">
-              <div class="ad">
-                <span class="label">Διαφήμιση</span>
-                <div class="ad__slot ad__slot--sidebar">300 × 600</div>
-              </div>
               <div class="popular" aria-labelledby="popular-h">
                 <h3 id="popular-h">Διαβάστε επίσης</h3>
                 <ol>
@@ -206,6 +218,10 @@
                   <li><a href="#">Ο δημοτικός προϋπολογισμός και οι προτεραιότητες</a></li>
                   <li><a href="#">Πόσο κοστίζει μια πεζοδρόμηση σήμερα</a></li>
                 </ol>
+              </div>
+              <div class="ad">
+                <span class="label">Διαφήμιση</span>
+                <div class="ad__slot ad__slot--sidebar">300 × 600</div>
               </div>
             </div>
           </aside>
@@ -272,14 +288,6 @@
               <span class="pick-card__kicker">ΠΕΡΙΒΑΛΛΟΝ</span>
               <h3 class="pick-card__title">Το Αιγαίο ζεσταίνεται: τι λένε τα ερευνητικά δεδομένα της τελευταίας δεκαετίας</h3>
               <span class="pick-card__meta">Αναστασία Ιωάννου · 10 λεπτά</span>
-            </div>
-          </a>
-          <a href="#" class="pick-card">
-            <div class="pick-card__img" style="background: linear-gradient(135deg, #5B7FB8, #2B4C7E);" role="img" aria-label="Πολιτισμός"></div>
-            <div>
-              <span class="pick-card__kicker">ΠΟΛΙΤΙΣΜΟΣ</span>
-              <h3 class="pick-card__title">Ο Ελύτης και η Λέσβος: μια περιπλάνηση με το «Άξιον Εστί»</h3>
-              <span class="pick-card__meta">Παναγιώτης Σταυρίδης · 15 λεπτά</span>
             </div>
           </a>
         </div>

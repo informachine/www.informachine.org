@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ΛΕΣΒΟΣ — ΣΤΟΝΗΣΙ</title>
+  <title>ΣΤΟΝΗΣΙ — ΛΕΣΒΟΣ</title>
   <meta name="description" content="Ρεπορτάζ, ανταποκρίσεις και δοσιέ από τη Λέσβο και το Βόρειο Αιγαίο.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,9 +38,23 @@
           <a href="#">Δρομολόγια</a>
         </nav>
         <span class="spacer"></span>
-        <a href="#">Αναζήτηση</a>
-        <a href="#">Newsletter</a>
-        <a href="#">Σύνδεση</a>
+        <nav class="lang-switch" aria-label="Επιλογή γλώσσας">
+          <a href="/" aria-current="page" lang="el" hreflang="el">EL</a>
+          <a href="/en/" lang="en" hreflang="en">EN</a>
+          <a href="/tr/" lang="tr" hreflang="tr">TR</a>
+        </nav>
+        <a class="strip-icon" href="#" aria-label="Αναζήτηση" title="Αναζήτηση">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M20 20l-4.3-4.3"/>
+          </svg>
+        </a>
+        <a class="strip-icon" href="#" aria-label="Σύνδεση" title="Σύνδεση / Εγγραφή">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c1.8-4 5-6 8-6s6.2 2 8 6"/>
+          </svg>
+        </a>
       </div>
     </div>
     <nav class="masthead__nav" aria-label="Κύρια πλοήγηση">
@@ -52,7 +66,8 @@
         <a href="#">ΠΟΛΙΤΙΣΜΟΣ</a>
         <a href="#">ΑΠΟΨΕΙΣ</a>
         <a href="#">ΠΟΛΥΜΕΣΑ</a>
-        <a href="index.html#platia" style="color: #8C6A2A;">ΠΛΑΤΕΙΑ</a>
+        <a href="index.html#agora">ΑΓΟΡΑ</a>
+        <a href="index.html#platia" style="color: #7A5D20;">ΠΛΑΤΕΙΑ</a>
       </div>
     </nav>
   </header>
@@ -218,10 +233,6 @@
           <!-- SIDEBAR -->
           <aside class="sidebar" aria-label="Δευτερεύον περιεχόμενο">
             <div class="sticky" style="display: flex; flex-direction: column; gap: var(--sp-5);">
-              <div class="ad">
-                <span class="label">Διαφήμιση</span>
-                <div class="ad__slot ad__slot--sidebar">300 × 600</div>
-              </div>
               <div class="popular" aria-labelledby="popular-h">
                 <h3 id="popular-h">Δημοφιλή στη Λέσβο</h3>
                 <ol>
@@ -230,6 +241,10 @@
                   <li><a href="#">Τι θα αλλάξει στη σχολική μεταφορά των χωριών</a></li>
                   <li><a href="#">Οι αρχαιολογικοί χώροι που άνοιξαν για το κοινό</a></li>
                 </ol>
+              </div>
+              <div class="ad">
+                <span class="label">Διαφήμιση</span>
+                <div class="ad__slot ad__slot--sidebar">300 × 600</div>
               </div>
             </div>
           </aside>
@@ -267,14 +282,6 @@
               <span class="pick-card__kicker">ΛΕΣΒΟΣ · Συνέντευξη</span>
               <h3 class="pick-card__title">Ο δήμαρχος για την επόμενη τετραετία: «Καμιά απόφαση χωρίς τους δημότες»</h3>
               <span class="pick-card__meta">Ελένη Σωτηρίου · 14 λεπτά</span>
-            </div>
-          </a>
-          <a href="#" class="pick-card">
-            <div class="pick-card__img" style="background: linear-gradient(135deg, #5B7FB8, #2B4C7E);" role="img" aria-label="Αγιάσος"></div>
-            <div>
-              <span class="pick-card__kicker">ΛΕΣΒΟΣ · Πολιτισμός</span>
-              <h3 class="pick-card__title">Αγιάσος: το χωριό που έμαθε να γράφει για τον εαυτό του</h3>
-              <span class="pick-card__meta">Παναγιώτης Σταυρίδης · 9 λεπτά</span>
             </div>
           </a>
         </div>

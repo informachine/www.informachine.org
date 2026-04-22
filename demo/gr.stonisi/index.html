@@ -38,9 +38,23 @@
           <a href="#">Δρομολόγια</a>
         </nav>
         <span class="spacer"></span>
-        <a href="#">Αναζήτηση</a>
-        <a href="#newsletter">Newsletter</a>
-        <a href="#">Σύνδεση</a>
+        <nav class="lang-switch" aria-label="Επιλογή γλώσσας">
+          <a href="/" aria-current="page" lang="el" hreflang="el">EL</a>
+          <a href="/en/" lang="en" hreflang="en">EN</a>
+          <a href="/tr/" lang="tr" hreflang="tr">TR</a>
+        </nav>
+        <a class="strip-icon" href="#" aria-label="Αναζήτηση" title="Αναζήτηση">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M20 20l-4.3-4.3"/>
+          </svg>
+        </a>
+        <a class="strip-icon" href="#" aria-label="Σύνδεση" title="Σύνδεση / Εγγραφή">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c1.8-4 5-6 8-6s6.2 2 8 6"/>
+          </svg>
+        </a>
       </div>
     </div>
     <nav class="masthead__nav" aria-label="Κύρια πλοήγηση">
@@ -52,7 +66,8 @@
         <a href="#">ΠΟΛΙΤΙΣΜΟΣ</a>
         <a href="#">ΑΠΟΨΕΙΣ</a>
         <a href="#">ΠΟΛΥΜΕΣΑ</a>
-        <a href="#platia" style="color: #8C6A2A;">ΠΛΑΤΕΙΑ</a>
+        <a href="#agora">ΑΓΟΡΑ</a>
+        <a href="#platia" style="color: #7A5D20;">ΠΛΑΤΕΙΑ</a>
         <a class="more" href="#">Περισσότερα</a>
       </div>
     </nav>
@@ -75,6 +90,12 @@
     <section class="hero" aria-label="Κύρια θέματα">
       <div class="hero__media" aria-hidden="true">
         <!-- Production: <video autoplay muted loop playsinline poster="/hero-poster.jpg"> … -->
+      </div>
+      <!-- Full-bleed image backdrops (one per slide). Synced with the slider in JS. -->
+      <div class="hero__backdrops" aria-hidden="true">
+        <div class="hero__backdrop" data-active="true"  style="background-image: url('hero-1.jpg');"></div>
+        <div class="hero__backdrop" data-active="false" style="background-image: url('hero-2.jpg');"></div>
+        <div class="hero__backdrop" data-active="false" style="background-image: url('hero-3.jpg');"></div>
       </div>
       <div class="wrap">
         <div class="hero-module" data-hero-slider>
@@ -132,89 +153,110 @@
       </div>
     </section>
 
-    <!-- =================== EDITOR'S PICKS (beneath hero) =================== -->
+    <!-- =================== EDITOR'S PICKS + LATEST (single centred row, latest in the fourth-column slot and overlaying the hero) =================== -->
     <section class="editor-picks" aria-labelledby="picks-h">
       <div class="wrap">
-        <header class="editor-picks__head">
-          <h2 id="picks-h">Επιλογές σύνταξης</h2>
-          <a class="see-all" href="#" style="font-family: var(--sans); font-weight: 600; font-size: var(--fs-meta); letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-link); text-decoration: none;">Όλες οι επιλογές</a>
-        </header>
-        <div class="editor-picks__grid">
-          <a href="#" class="pick-card">
-            <div class="pick-card__img" style="background: linear-gradient(135deg, #4A6FA5, #1F4788);" role="img" aria-label="Πλωμάρι"></div>
-            <div>
-              <span class="pick-card__kicker">ΛΕΣΒΟΣ</span>
-              <h3 class="pick-card__title">Πώς άλλαξε η ζωή στις μικρές κοινότητες του Πλωμαρίου μετά την πυρκαγιά</h3>
-              <span class="pick-card__meta">Γιώργος Αλεξίου · 8 λεπτά</span>
+        <div class="picks-latest__grid">
+          <div>
+            <header class="editor-picks__head">
+              <h2 id="picks-h">Επιλογές σύνταξης</h2>
+              <a class="see-all" href="#" style="font-family: var(--sans); font-weight: 600; font-size: var(--fs-meta); letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-link); text-decoration: none;">Όλες οι επιλογές</a>
+            </header>
+            <div class="editor-picks__grid">
+              <a href="#" class="pick-card">
+                <div class="pick-card__img" style="background: linear-gradient(135deg, #4A6FA5, #1F4788);" role="img" aria-label="Πλωμάρι"></div>
+                <div>
+                  <span class="pick-card__kicker">ΛΕΣΒΟΣ</span>
+                  <h3 class="pick-card__title">Πώς άλλαξε η ζωή στις μικρές κοινότητες του Πλωμαρίου μετά την πυρκαγιά</h3>
+                  <span class="pick-card__meta">Γιώργος Αλεξίου · 8 λεπτά</span>
+                </div>
+              </a>
+              <a href="#" class="pick-card">
+                <div class="pick-card__img" style="background: linear-gradient(135deg, #3B6FC9, #1F4788);" role="img" aria-label="Προσφυγικό"></div>
+                <div>
+                  <span class="pick-card__kicker">ΚΟΙΝΩΝΙΑ</span>
+                  <h3 class="pick-card__title">Πέντε χρόνια μετά τη Μόρια: τι μένει στη μνήμη και τι στον χάρτη</h3>
+                  <span class="pick-card__meta">Μαρία Παπαδοπούλου · 12 λεπτά</span>
+                </div>
+              </a>
+              <a href="#" class="pick-card">
+                <div class="pick-card__img" style="background: linear-gradient(135deg, #2B4C7E, #0A1A33);" role="img" aria-label="Αιγαίο"></div>
+                <div>
+                  <span class="pick-card__kicker">ΠΕΡΙΒΑΛΛΟΝ</span>
+                  <h3 class="pick-card__title">Το Αιγαίο ζεσταίνεται: τι λένε τα ερευνητικά δεδομένα της τελευταίας δεκαετίας</h3>
+                  <span class="pick-card__meta">Αναστασία Ιωάννου · 10 λεπτά</span>
+                </div>
+              </a>
             </div>
-          </a>
-          <a href="#" class="pick-card">
-            <div class="pick-card__img" style="background: linear-gradient(135deg, #3B6FC9, #1F4788);" role="img" aria-label="Προσφυγικό"></div>
-            <div>
-              <span class="pick-card__kicker">ΚΟΙΝΩΝΙΑ</span>
-              <h3 class="pick-card__title">Πέντε χρόνια μετά τη Μόρια: τι μένει στη μνήμη και τι στον χάρτη</h3>
-              <span class="pick-card__meta">Μαρία Παπαδοπούλου · 12 λεπτά</span>
-            </div>
-          </a>
-          <a href="#" class="pick-card">
-            <div class="pick-card__img" style="background: linear-gradient(135deg, #2B4C7E, #0A1A33);" role="img" aria-label="Αιγαίο"></div>
-            <div>
-              <span class="pick-card__kicker">ΠΕΡΙΒΑΛΛΟΝ</span>
-              <h3 class="pick-card__title">Το Αιγαίο ζεσταίνεται: τι λένε τα ερευνητικά δεδομένα του τελευταίου δεκαετίας</h3>
-              <span class="pick-card__meta">Αναστασία Ιωάννου · 10 λεπτά</span>
-            </div>
-          </a>
-          <a href="#" class="pick-card">
-            <div class="pick-card__img" style="background: linear-gradient(135deg, #5B7FB8, #2B4C7E);" role="img" aria-label="Πολιτισμός"></div>
-            <div>
-              <span class="pick-card__kicker">ΠΟΛΙΤΙΣΜΟΣ</span>
-              <h3 class="pick-card__title">Ο Ελύτης και η Λέσβος: μια περιπλάνηση με το «Άξιον Εστί» στη βαλίτσα</h3>
-              <span class="pick-card__meta">Παναγιώτης Σταυρίδης · 15 λεπτά</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
 
-    <!-- =================== MOST RECENT =================== -->
-    <section class="latest" aria-labelledby="latest-h">
-      <div class="wrap">
-        <header class="latest__head">
-          <h2 id="latest-h">Τελευταία νέα</h2>
-          <a href="#" style="font-family: var(--sans); font-weight: 600; font-size: var(--fs-meta); letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-link); text-decoration: none;">Όλα τα νέα</a>
-        </header>
-        <ol class="latest__list">
-          <li class="latest__item">
-            <time class="latest__time" datetime="2026-04-21T11:18">Πριν 3 λεπτά</time>
-            <a class="latest__link" href="#">Ανακοίνωση από τον ΟΣΕΘ για τις αποφάσεις της συνεδρίασης</a>
-            <span class="latest__section">ΛΕΣΒΟΣ · Συγκοινωνίες</span>
-          </li>
-          <li class="latest__item">
-            <time class="latest__time" datetime="2026-04-21T11:00">Πριν 21 λεπτά</time>
-            <a class="latest__link" href="#">Πάνω από 4.000 αιτήσεις για εποχιακή απασχόληση στη Λέσβο</a>
-            <span class="latest__section">ΟΙΚΟΝΟΜΙΑ · Εργασία</span>
-          </li>
-          <li class="latest__item">
-            <time class="latest__time" datetime="2026-04-21T10:42">Πριν 42 λεπτά</time>
-            <a class="latest__link" href="#">Συνέντευξη τύπου του δημάρχου στις 18:00 για τον παραλιακό άξονα</a>
-            <span class="latest__section">ΛΕΣΒΟΣ · Αυτοδιοίκηση</span>
-          </li>
-          <li class="latest__item">
-            <time class="latest__time" datetime="2026-04-21T10:05">Πριν 1 ώρα</time>
-            <a class="latest__link" href="#">Νέα μονάδα αιμοδιάλυσης στο Νοσοκομείο Μυτιλήνης — τα πρώτα περιστατικά</a>
-            <span class="latest__section">ΚΟΙΝΩΝΙΑ · Υγεία</span>
-          </li>
-          <li class="latest__item">
-            <time class="latest__time" datetime="2026-04-21T09:30">Πριν 2 ώρες</time>
-            <a class="latest__link" href="#">Η Μυτιλήνη φιλοξενεί διεθνή ιστιοπλοϊκό αγώνα τον Ιούνιο</a>
-            <span class="latest__section">ΑΘΛΗΤΙΣΜΟΣ · Ιστιοπλοΐα</span>
-          </li>
-          <li class="latest__item">
-            <time class="latest__time" datetime="2026-04-21T09:15">Πριν 2 ώρες</time>
-            <a class="latest__link" href="#">Αύριο στη Λέσβο η υπουργός Πολιτισμού — το πρόγραμμα</a>
-            <span class="latest__section">ΠΟΛΙΤΙΣΜΟΣ</span>
-          </li>
-        </ol>
+            <!-- ΛΕΣΒΟΣ block — fills the area under editor picks, in the same 3fr column -->
+            <div style="margin-top: var(--sp-7);">
+              <header class="section-head">
+                <h2>ΛΕΣΒΟΣ</h2>
+                <a class="see-all" href="category.html">Όλα τα θέματα Λέσβου</a>
+              </header>
+              <div class="grid-3">
+                <a href="#" class="card">
+                  <div class="card__img p5" role="img" aria-label="Πλωμάρι"></div>
+                  <span class="card__kicker">ΠΛΩΜΑΡΙ</span>
+                  <h3 class="card__title">Το Πλωμάρι οργανώνει διεθνές φεστιβάλ αποστάγματος</h3>
+                  <span class="card__meta">πριν 3 ώρες</span>
+                </a>
+                <a href="#" class="card">
+                  <div class="card__img p6" role="img" aria-label="Καλλονή"></div>
+                  <span class="card__kicker">ΚΑΛΛΟΝΗ</span>
+                  <h3 class="card__title">Εκτός λειτουργίας για 48 ώρες ο βιολογικός — τι αλλάζει</h3>
+                  <span class="card__meta">πριν 5 ώρες</span>
+                </a>
+                <a href="#" class="card">
+                  <div class="card__img p8" role="img" aria-label="Μόλυβος"></div>
+                  <span class="card__kicker">ΜΟΛΥΒΟΣ</span>
+                  <h3 class="card__title">Νέες θέσεις εργασίας στον τουριστικό τομέα — τα στοιχεία</h3>
+                  <span class="card__meta">χθες</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="home-latest" aria-labelledby="home-latest-h">
+            <header class="home-latest__head">
+              <h2 id="home-latest-h">Τελευταία</h2>
+              <a href="#">Όλα</a>
+            </header>
+            <ol class="home-latest__list">
+              <li class="home-latest__item">
+                <time datetime="2026-04-21T11:18">Πριν 3 λεπτά</time>
+                <a href="#">Ανακοίνωση από τον ΟΣΕΘ για τις αποφάσεις της συνεδρίασης</a>
+                <span class="home-latest__section">ΛΕΣΒΟΣ · Συγκοινωνίες</span>
+              </li>
+              <li class="home-latest__item">
+                <time datetime="2026-04-21T11:00">Πριν 21 λεπτά</time>
+                <a href="#">Πάνω από 4.000 αιτήσεις για εποχιακή απασχόληση στη Λέσβο</a>
+                <span class="home-latest__section">ΟΙΚΟΝΟΜΙΑ · Εργασία</span>
+              </li>
+              <li class="home-latest__item">
+                <time datetime="2026-04-21T10:42">Πριν 42 λεπτά</time>
+                <a href="#">Συνέντευξη τύπου του δημάρχου στις 18:00 για τον παραλιακό άξονα</a>
+                <span class="home-latest__section">ΛΕΣΒΟΣ · Αυτοδιοίκηση</span>
+              </li>
+              <li class="home-latest__item">
+                <time datetime="2026-04-21T10:05">Πριν 1 ώρα</time>
+                <a href="#">Νέα μονάδα αιμοδιάλυσης στο Νοσοκομείο Μυτιλήνης</a>
+                <span class="home-latest__section">ΚΟΙΝΩΝΙΑ · Υγεία</span>
+              </li>
+              <li class="home-latest__item">
+                <time datetime="2026-04-21T09:30">Πριν 2 ώρες</time>
+                <a href="#">Η Μυτιλήνη φιλοξενεί διεθνή ιστιοπλοϊκό αγώνα τον Ιούνιο</a>
+                <span class="home-latest__section">ΑΘΛΗΤΙΣΜΟΣ · Ιστιοπλοΐα</span>
+              </li>
+              <li class="home-latest__item">
+                <time datetime="2026-04-21T09:15">Πριν 2 ώρες</time>
+                <a href="#">Αύριο στη Λέσβο η υπουργός Πολιτισμού — το πρόγραμμα</a>
+                <span class="home-latest__section">ΠΟΛΙΤΙΣΜΟΣ</span>
+              </li>
+            </ol>
+          </aside>
+        </div>
       </div>
     </section>
 
@@ -224,57 +266,94 @@
       <div class="ad__slot ad__slot--leaderboard">970 × 250 / 728 × 100</div>
     </div></div>
 
-    <!-- =================== FEATURED =================== -->
-    <section class="section">
+    <!-- =================== ΑΠΟΨΕΙΣ (featured opinion layout) =================== -->
+    <section class="section" id="apopseis" aria-labelledby="apopseis-h">
       <div class="wrap">
         <header class="section-head">
-          <h2>Η ημέρα στη Λέσβο</h2>
-          <a class="see-all" href="#">Όλα τα θέματα</a>
+          <h2 id="apopseis-h">ΑΠΟΨΕΙΣ</h2>
+          <a class="see-all" href="#">Όλες οι απόψεις</a>
         </header>
 
         <div class="layout-2col">
           <div>
             <div class="featured">
               <article class="featured__main">
-                <a href="article.html" class="card">
-                  <div class="card__img p1" role="img" aria-label="Άποψη της προκυμαίας της Μυτιλήνης"></div>
-                  <span class="card__kicker">ΛΕΣΒΟΣ · Αυτοδιοίκηση</span>
-                  <h3 class="card__title" style="font-size: var(--fs-h2); line-height: 1.15;">Τι αλλάζει στο αναθεωρημένο σχέδιο για τον παραλιακό άξονα — τα νέα σημεία και οι αντιδράσεις</h3>
-                  <p class="card__standfirst">Η δημοτική αρχή ενσωμάτωσε μέρος των παρατηρήσεων της δημόσιας διαβούλευσης — αλλά όχι όλες.</p>
-                  <span class="card__meta">Μαρία Παπαδοπούλου · πριν 2 ώρες</span>
+                <a href="#" class="card">
+                  <div class="card__img p4" role="img" aria-label="Πορτρέτο αρθρογράφου"></div>
+                  <span class="card__kicker">ΑΠΟΨΕΙΣ · Σχόλιο της ημέρας</span>
+                  <h3 class="card__title" style="font-size: var(--fs-h2); line-height: 1.15;">Ο λόγος της αυτοδιοίκησης, ο χρόνος της κεντρικής εξουσίας</h3>
+                  <p class="card__standfirst">Γιατί η απόσταση μεταξύ μιας ανακοίνωσης και μιας απόφασης εξακολουθεί να μετριέται σε χρόνια, όχι σε εβδομάδες.</p>
+                  <span class="card__meta">Παναγιώτης Σταυρίδης · 8 λεπτά ανάγνωσης</span>
                 </a>
               </article>
 
               <div class="featured__aside">
                 <a href="#" class="card">
-                  <div class="card__img p2" role="img" aria-label="Αίθουσα δημοτικού συμβουλίου"></div>
-                  <span class="card__kicker">ΚΟΙΝΩΝΙΑ</span>
-                  <h3 class="card__title">Τι προβλέπει η νέα συμφωνία για τα σχολικά δρομολόγια στα χωριά</h3>
-                  <span class="card__meta">πριν 4 ώρες</span>
+                  <div class="card__img p2" role="img" aria-label="Πορτρέτο"></div>
+                  <span class="card__kicker">ΑΠΟΨΕΙΣ · Πολιτισμός</span>
+                  <h3 class="card__title">Μια έκθεση για το Αιγαίο χωρίς νοσταλγία</h3>
+                  <span class="card__meta">Αναστασία Ιωάννου</span>
                 </a>
                 <a href="#" class="card">
-                  <div class="card__img p3" role="img" aria-label="Λιμάνι της Μυτιλήνης"></div>
-                  <span class="card__kicker">ΟΙΚΟΝΟΜΙΑ</span>
-                  <h3 class="card__title">Τουριστική περίοδος με αυξημένες κρατήσεις, λιγότερες πτήσεις</h3>
-                  <span class="card__meta">πριν 6 ώρες</span>
-                </a>
-                <a href="#" class="card">
-                  <div class="card__img p4" role="img" aria-label="Αγροτικό τοπίο"></div>
-                  <span class="card__kicker">ΠΕΡΙΒΑΛΛΟΝ</span>
-                  <h3 class="card__title">Πρόοδος στην αναδάσωση της Αγιάσου — τα πρώτα δείγματα</h3>
-                  <span class="card__meta">χθες</span>
+                  <div class="card__img p3" role="img" aria-label="Πορτρέτο"></div>
+                  <span class="card__kicker">ΑΠΟΨΕΙΣ · Οικονομία</span>
+                  <h3 class="card__title">Η τουριστική αντοχή δεν είναι δεδομένη</h3>
+                  <span class="card__meta">Δημήτρης Βασιλείου</span>
                 </a>
               </div>
+            </div>
+
+            <!-- More opinion pieces — text-only links filling the vacant space -->
+            <div class="more-links" aria-labelledby="more-links-h">
+              <h3 class="more-links__head" id="more-links-h">Περισσότερες απόψεις</h3>
+              <ul class="more-links__list">
+                <li>
+                  <a class="more-links__link" href="#">Το νησί των μεγάλων αποφάσεων που κανείς δεν πήρε</a>
+                  <span class="more-links__author">Ελένη Σωτηρίου</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Η Αγιάσος ως εργαστήριο αυτοδιαχείρισης</a>
+                  <span class="more-links__author">Κωνσταντίνος Θεοδωρίδης</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Δεν υπάρχει λόγος να μιλάμε ακόμη για «ανθεκτικότητα»</a>
+                  <span class="more-links__author">Άννα Κωνσταντίνου</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Γιατί τα νησιά του Αιγαίου χρειάζονται δική τους αγροτική πολιτική</a>
+                  <span class="more-links__author">Γιώργος Αλεξίου</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Η σιωπηλή μεταρρύθμιση στη σχολική μεταφορά</a>
+                  <span class="more-links__author">Μαρία Παπαδοπούλου</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Μικρά λιμάνια, μεγάλες αποφάσεις</a>
+                  <span class="more-links__author">Σπύρος Μαυρογιάννης</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Η γλώσσα της δημόσιας διαβούλευσης γερνάει</a>
+                  <span class="more-links__author">Παναγιώτης Σταυρίδης</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Ο τουρισμός της ήσυχης εποχής</a>
+                  <span class="more-links__author">Δημήτρης Βασιλείου</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Ο δημόσιος χώρος ως σχολείο πολιτικής</a>
+                  <span class="more-links__author">Αναστασία Ιωάννου</span>
+                </li>
+                <li>
+                  <a class="more-links__link" href="#">Τρία πράγματα που πρέπει να ξαναγράψουμε για τη μετανάστευση</a>
+                  <span class="more-links__author">Μαρία Παπαδοπούλου</span>
+                </li>
+              </ul>
             </div>
           </div>
 
           <aside class="sidebar" aria-label="Δευτερεύον περιεχόμενο">
             <div class="sticky" style="display: flex; flex-direction: column; gap: var(--sp-5);">
-              <div class="ad">
-                <span class="label">Διαφήμιση</span>
-                <div class="ad__slot ad__slot--sidebar">300 × 600</div>
-              </div>
-
+              <!-- Most-visited first (between the featured block and the ad slot) -->
               <div class="popular" aria-labelledby="popular-h">
                 <h3 id="popular-h">Τα πιο διαβασμένα</h3>
                 <ol>
@@ -285,44 +364,13 @@
                   <li><a href="#">Οι νέοι αρχαιολογικοί χώροι που άνοιξαν για το κοινό</a></li>
                 </ol>
               </div>
+
+              <div class="ad">
+                <span class="label">Διαφήμιση</span>
+                <div class="ad__slot ad__slot--sidebar">300 × 600</div>
+              </div>
             </div>
           </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================== ΛΕΣΒΟΣ =================== -->
-    <section class="section">
-      <div class="wrap">
-        <header class="section-head">
-          <h2>ΛΕΣΒΟΣ</h2>
-          <a class="see-all" href="category.html">Όλα τα θέματα Λέσβου</a>
-        </header>
-        <div class="grid-4">
-          <a href="#" class="card">
-            <div class="card__img p5" role="img" aria-label="Πλωμάρι"></div>
-            <span class="card__kicker">ΠΛΩΜΑΡΙ</span>
-            <h3 class="card__title">Το Πλωμάρι οργανώνει διεθνές φεστιβάλ αποστάγματος</h3>
-            <span class="card__meta">πριν 3 ώρες</span>
-          </a>
-          <a href="#" class="card">
-            <div class="card__img p6" role="img" aria-label="Καλλονή"></div>
-            <span class="card__kicker">ΚΑΛΛΟΝΗ</span>
-            <h3 class="card__title">Εκτός λειτουργίας για 48 ώρες ο βιολογικός — τι αλλάζει</h3>
-            <span class="card__meta">πριν 5 ώρες</span>
-          </a>
-          <a href="#" class="card">
-            <div class="card__img p7" role="img" aria-label="Αγιάσος"></div>
-            <span class="card__kicker">ΑΓΙΑΣΟΣ</span>
-            <h3 class="card__title">Αναβιώνει το Πασχαλινό πανηγύρι μετά από δύο χρόνια</h3>
-            <span class="card__meta">χθες</span>
-          </a>
-          <a href="#" class="card">
-            <div class="card__img p8" role="img" aria-label="Μόλυβος"></div>
-            <span class="card__kicker">ΜΟΛΥΒΟΣ</span>
-            <h3 class="card__title">Νέες θέσεις εργασίας στον τουριστικό τομέα — τα στοιχεία</h3>
-            <span class="card__meta">χθες</span>
-          </a>
         </div>
       </div>
     </section>
@@ -333,63 +381,190 @@
       <div class="ad__slot ad__slot--mpu">300 × 280</div>
     </div></div>
 
-    <!-- =================== ΚΟΙΝΩΝΙΑ & ΟΙΚΟΝΟΜΙΑ =================== -->
-    <section class="section warm">
+    <!-- =================== ΚΟΙΝΩΝΙΑ =================== -->
+    <section class="section warm" id="koinonia" aria-labelledby="koinonia-h">
       <div class="wrap">
-        <div style="display:grid; gap: var(--sp-6); grid-template-columns: 1fr;">
-          <div>
-            <header class="section-head">
-              <h2>ΚΟΙΝΩΝΙΑ</h2>
-              <a class="see-all" href="#">Όλη η Κοινωνία</a>
-            </header>
-            <div class="grid-3">
-              <a href="#" class="card">
-                <div class="card__img p9" role="img" aria-label="Εκπαίδευση"></div>
-                <span class="card__kicker">ΕΚΠΑΙΔΕΥΣΗ</span>
-                <h3 class="card__title">Οι νέοι κανόνες για τα σχολεία χωριών με λιγότερους από 20 μαθητές</h3>
-                <span class="card__meta">πριν 2 ώρες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p1" role="img" aria-label="Υγεία"></div>
-                <span class="card__kicker">ΥΓΕΙΑ</span>
-                <h3 class="card__title">Νέα μονάδα αιμοδιάλυσης στο Νοσοκομείο Μυτιλήνης</h3>
-                <span class="card__meta">πριν 5 ώρες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p2" role="img" aria-label="Μεταφορές"></div>
-                <span class="card__kicker">ΜΕΤΑΦΟΡΕΣ</span>
-                <h3 class="card__title">Σε διαβούλευση το νέο σύστημα αστικών λεωφορείων</h3>
-                <span class="card__meta">χθες</span>
-              </a>
-            </div>
-          </div>
+        <header class="section-head">
+          <h2 id="koinonia-h">ΚΟΙΝΩΝΙΑ</h2>
+          <a class="see-all" href="#">Όλη η Κοινωνία</a>
+        </header>
+        <div class="grid-4">
+          <a href="#" class="card">
+            <div class="card__img p9" role="img" aria-label="Εκπαίδευση"></div>
+            <span class="card__kicker">ΕΚΠΑΙΔΕΥΣΗ</span>
+            <h3 class="card__title">Οι νέοι κανόνες για τα σχολεία χωριών με λιγότερους από 20 μαθητές</h3>
+            <span class="card__meta">πριν 2 ώρες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p1" role="img" aria-label="Υγεία"></div>
+            <span class="card__kicker">ΥΓΕΙΑ</span>
+            <h3 class="card__title">Νέα μονάδα αιμοδιάλυσης στο Νοσοκομείο Μυτιλήνης</h3>
+            <span class="card__meta">πριν 5 ώρες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p2" role="img" aria-label="Μεταφορές"></div>
+            <span class="card__kicker">ΜΕΤΑΦΟΡΕΣ</span>
+            <h3 class="card__title">Σε διαβούλευση το νέο σύστημα αστικών λεωφορείων</h3>
+            <span class="card__meta">χθες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p6" role="img" aria-label="Μετανάστευση"></div>
+            <span class="card__kicker">ΜΕΤΑΝΑΣΤΕΥΣΗ</span>
+            <h3 class="card__title">Πέντε χρόνια μετά τη Μόρια: τι μένει στη μνήμη και τι στον χάρτη</h3>
+            <span class="card__meta">χθες</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-          <div>
-            <header class="section-head">
-              <h2>ΟΙΚΟΝΟΜΙΑ</h2>
-              <a class="see-all" href="#">Όλη η Οικονομία</a>
-            </header>
-            <div class="grid-3">
-              <a href="#" class="card">
-                <div class="card__img p3" role="img" aria-label="Ναυτιλία"></div>
-                <span class="card__kicker">ΝΑΥΤΙΛΙΑ</span>
-                <h3 class="card__title">Αυξημένη κίνηση στο λιμάνι — οι προβλέψεις για τη σεζόν</h3>
-                <span class="card__meta">πριν 3 ώρες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p4" role="img" aria-label="Τουρισμός"></div>
-                <span class="card__kicker">ΤΟΥΡΙΣΜΟΣ</span>
-                <h3 class="card__title">Η αγορά καταλυμάτων τρέχει με διπλάσιο ρυθμό — τι σημαίνει</h3>
-                <span class="card__meta">πριν 6 ώρες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p5" role="img" aria-label="Εργασία"></div>
-                <span class="card__kicker">ΕΡΓΑΣΙΑ</span>
-                <h3 class="card__title">Χιλιάδες αιτήσεις για εποχιακή απασχόληση — πού εστιάζεται η ζήτηση</h3>
-                <span class="card__meta">χθες</span>
-              </a>
+    <!-- =================== ΟΙΚΟΝΟΜΙΑ =================== -->
+    <section class="section" id="oikonomia" aria-labelledby="oikonomia-h">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="oikonomia-h">ΟΙΚΟΝΟΜΙΑ</h2>
+          <a class="see-all" href="#">Όλη η Οικονομία</a>
+        </header>
+        <div class="grid-4">
+          <a href="#" class="card">
+            <div class="card__img p3" role="img" aria-label="Ναυτιλία"></div>
+            <span class="card__kicker">ΝΑΥΤΙΛΙΑ</span>
+            <h3 class="card__title">Αυξημένη κίνηση στο λιμάνι — οι προβλέψεις για τη σεζόν</h3>
+            <span class="card__meta">πριν 3 ώρες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p4" role="img" aria-label="Τουρισμός"></div>
+            <span class="card__kicker">ΤΟΥΡΙΣΜΟΣ</span>
+            <h3 class="card__title">Η αγορά καταλυμάτων τρέχει με διπλάσιο ρυθμό — τι σημαίνει</h3>
+            <span class="card__meta">πριν 6 ώρες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p5" role="img" aria-label="Εργασία"></div>
+            <span class="card__kicker">ΕΡΓΑΣΙΑ</span>
+            <h3 class="card__title">Χιλιάδες αιτήσεις για εποχιακή απασχόληση — πού εστιάζεται η ζήτηση</h3>
+            <span class="card__meta">χθες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p8" role="img" aria-label="Αγροτικά"></div>
+            <span class="card__kicker">ΑΓΡΟΤΙΚΑ</span>
+            <h3 class="card__title">Η συγκομιδή των ελαιώνων ξεκινά νωρίτερα φέτος</h3>
+            <span class="card__meta">προχθές</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== ΑΘΛΗΤΙΣΜΟΣ =================== -->
+    <section class="section warm" id="athlitismos" aria-labelledby="athlitismos-h">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="athlitismos-h">ΑΘΛΗΤΙΣΜΟΣ</h2>
+          <a class="see-all" href="#">Όλα τα αθλητικά</a>
+        </header>
+        <div class="grid-4">
+          <a href="#" class="card">
+            <div class="card__img p6" role="img" aria-label="Αιολικός"></div>
+            <span class="card__kicker">ΑΙΟΛΙΚΟΣ</span>
+            <h3 class="card__title">Ιστορική νίκη σε παιχνίδι που κρίθηκε στο τελευταίο λεπτό</h3>
+            <span class="card__meta">χθες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p7" role="img" aria-label="Καλαθοσφαίριση"></div>
+            <span class="card__kicker">ΚΑΛΑΘΟΣΦΑΙΡΙΣΗ</span>
+            <h3 class="card__title">Μεταγραφικός πυρετός και στη Λέσβο — οι πρώτες κινήσεις</h3>
+            <span class="card__meta">πριν 2 ώρες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p8" role="img" aria-label="Ιστιοπλοΐα"></div>
+            <span class="card__kicker">ΙΣΤΙΟΠΛΟΪΑ</span>
+            <h3 class="card__title">Η Μυτιλήνη φιλοξενεί διεθνή αγώνα τον Ιούνιο</h3>
+            <span class="card__meta">χθες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p9" role="img" aria-label="Στίβος"></div>
+            <span class="card__kicker">ΣΤΙΒΟΣ</span>
+            <h3 class="card__title">Τρεις νέοι αθλητές της Λέσβου στην εθνική ομάδα εφήβων</h3>
+            <span class="card__meta">προχθές</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== ΠΟΛΙΤΙΣΜΟΣ =================== -->
+    <section class="section" id="politismos" aria-labelledby="politismos-h">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="politismos-h">ΠΟΛΙΤΙΣΜΟΣ</h2>
+          <a class="see-all" href="#">Όλος ο Πολιτισμός</a>
+        </header>
+        <div class="grid-4">
+          <a href="#" class="card">
+            <div class="card__img p1 video" role="img" aria-label="Βίντεο: Έκθεση Αιγαίου"></div>
+            <span class="card__kicker">ΒΙΝΤΕΟ · ΕΚΘΕΣΗ</span>
+            <h3 class="card__title">Περιήγηση στην έκθεση «Αιγαίο: Σύγχρονο Βλέμμα»</h3>
+            <span class="card__meta">3:42</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p2" role="img" aria-label="Βιβλίο"></div>
+            <span class="card__kicker">ΒΙΒΛΙΟ</span>
+            <h3 class="card__title">Το νέο μυθιστόρημα της Εύας Στεφανίδου — κριτική</h3>
+            <span class="card__meta">πριν 4 ώρες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p3" role="img" aria-label="Μουσική"></div>
+            <span class="card__kicker">ΜΟΥΣΙΚΗ</span>
+            <h3 class="card__title">Συναυλίες του καλοκαιριού — όλο το πρόγραμμα</h3>
+            <span class="card__meta">χθες</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img p4" role="img" aria-label="Κινηματογράφος"></div>
+            <span class="card__kicker">ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ</span>
+            <h3 class="card__title">Η Λέσβος στο φεστιβάλ Κάννες — ένα σπάνιο ντοκιμαντέρ</h3>
+            <span class="card__meta">χθες</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== ΑΓΟΡΑ (marketplace / classifieds) =================== -->
+    <section class="section warm" id="agora" aria-labelledby="agora-h">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="agora-h">ΑΓΟΡΑ</h2>
+          <a class="see-all" href="#">Όλες οι αγγελίες</a>
+        </header>
+        <div class="agora-grid">
+          <a href="#" class="agora-tile">
+            <div class="agora-tile__img" role="img" aria-label="Απασχόληση" style="background: linear-gradient(135deg, #2B4C7E 0%, #0F2A52 100%);"></div>
+            <div class="agora-tile__body">
+              <span class="agora-tile__label">Απασχόληση</span>
+              <h3 class="agora-tile__title">Θέσεις εργασίας στη Λέσβο</h3>
+              <span class="agora-tile__count">47 νέες αγγελίες</span>
             </div>
-          </div>
+          </a>
+          <a href="#" class="agora-tile">
+            <div class="agora-tile__img" role="img" aria-label="Ακίνητα" style="background: linear-gradient(135deg, #4A6FA5 0%, #1F4788 100%);"></div>
+            <div class="agora-tile__body">
+              <span class="agora-tile__label">Ακίνητα</span>
+              <h3 class="agora-tile__title">Πωλήσεις & ενοικιάσεις</h3>
+              <span class="agora-tile__count">132 αγγελίες</span>
+            </div>
+          </a>
+          <a href="#" class="agora-tile">
+            <div class="agora-tile__img" role="img" aria-label="Υπηρεσίες" style="background: linear-gradient(135deg, #5B7FB8 0%, #2B4C7E 100%);"></div>
+            <div class="agora-tile__body">
+              <span class="agora-tile__label">Υπηρεσίες</span>
+              <h3 class="agora-tile__title">Επαγγελματίες & συνεργεία</h3>
+              <span class="agora-tile__count">84 καταχωρήσεις</span>
+            </div>
+          </a>
+          <a href="#" class="agora-tile">
+            <div class="agora-tile__img" role="img" aria-label="Εκδηλώσεις" style="background: linear-gradient(135deg, #3B6FC9 0%, #1F4788 100%);"></div>
+            <div class="agora-tile__body">
+              <span class="agora-tile__label">Εκδηλώσεις</span>
+              <h3 class="agora-tile__title">Πρόγραμμα Σαββατοκύριακου</h3>
+              <span class="agora-tile__count">23 εκδηλώσεις το 7ήμερο</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -444,51 +619,6 @@
       </div>
     </section>
 
-    <!-- =================== ΑΠΟΨΕΙΣ =================== -->
-    <section class="section">
-      <div class="wrap">
-        <header class="section-head">
-          <h2>ΑΠΟΨΕΙΣ</h2>
-          <a class="see-all" href="#">Όλες οι απόψεις</a>
-        </header>
-        <div class="opinion">
-          <a href="#" class="opinion__card">
-            <div class="opinion__author">
-              <div class="opinion__avatar" aria-hidden="true">ΠΣ</div>
-              <div>
-                <div class="opinion__name">Παναγιώτης Σταυρίδης</div>
-                <div class="opinion__role">Αρθρογράφος</div>
-              </div>
-            </div>
-            <h3 class="opinion__title">Ο λόγος της αυτοδιοίκησης, ο χρόνος της κεντρικής εξουσίας</h3>
-            <p class="opinion__excerpt">Γιατί η απόσταση μεταξύ μιας ανακοίνωσης και μιας απόφασης εξακολουθεί να μετριέται σε χρόνια, όχι σε εβδομάδες.</p>
-          </a>
-          <a href="#" class="opinion__card">
-            <div class="opinion__author">
-              <div class="opinion__avatar" aria-hidden="true">ΑΙ</div>
-              <div>
-                <div class="opinion__name">Αναστασία Ιωάννου</div>
-                <div class="opinion__role">Πολιτιστική Επιμελήτρια</div>
-              </div>
-            </div>
-            <h3 class="opinion__title">Μια έκθεση για το Αιγαίο χωρίς νοσταλγία</h3>
-            <p class="opinion__excerpt">Αν θέλουμε να μιλήσουμε για το νησί σήμερα, χρειαζόμαστε μια οπτική γλώσσα που δεν αναπαράγει τα σύμβολα του παρελθόντος.</p>
-          </a>
-          <a href="#" class="opinion__card">
-            <div class="opinion__author">
-              <div class="opinion__avatar" aria-hidden="true">ΔΒ</div>
-              <div>
-                <div class="opinion__name">Δημήτρης Βασιλείου</div>
-                <div class="opinion__role">Οικονομολόγος</div>
-              </div>
-            </div>
-            <h3 class="opinion__title">Η τουριστική αντοχή δεν είναι δεδομένη</h3>
-            <p class="opinion__excerpt">Τα στοιχεία για τις κρατήσεις δείχνουν αισιοδοξία. Τα στοιχεία για την αγορά εργασίας λένε κάτι λιγότερο άνετο.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <!-- =================== NEWSLETTER =================== -->
     <section class="newsletter" id="newsletter" aria-labelledby="nl-h">
       <div class="wrap">
@@ -503,79 +633,6 @@
           <p class="consent">Πατώντας «Εγγραφή» συμφωνείτε με την Πολιτική Απορρήτου.</p>
           <p id="nl-status" role="status" aria-live="polite"></p>
         </form>
-      </div>
-    </section>
-
-    <!-- =================== ΑΘΛΗΤΙΣΜΟΣ & ΠΟΛΙΤΙΣΜΟΣ =================== -->
-    <section class="section">
-      <div class="wrap">
-        <div style="display:grid; gap: var(--sp-6); grid-template-columns: 1fr;">
-          <div>
-            <header class="section-head">
-              <h2>ΑΘΛΗΤΙΣΜΟΣ</h2>
-              <a class="see-all" href="#">Όλα τα αθλητικά</a>
-            </header>
-            <div class="grid-4">
-              <a href="#" class="card">
-                <div class="card__img p6" role="img" aria-label="Αιολικός"></div>
-                <span class="card__kicker">ΑΙΟΛΙΚΟΣ</span>
-                <h3 class="card__title">Ιστορική νίκη σε παιχνίδι που κρίθηκε στο τελευταίο λεπτό</h3>
-                <span class="card__meta">χθες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p7" role="img" aria-label="Καλαθοσφαίριση"></div>
-                <span class="card__kicker">ΚΑΛΑΘΟΣΦΑΙΡΙΣΗ</span>
-                <h3 class="card__title">Μεταγραφικός πυρετός και στη Λέσβο — οι πρώτες κινήσεις</h3>
-                <span class="card__meta">πριν 2 ώρες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p8" role="img" aria-label="Ιστιοπλοΐα"></div>
-                <span class="card__kicker">ΙΣΤΙΟΠΛΟΪΑ</span>
-                <h3 class="card__title">Η Μυτιλήνη φιλοξενεί διεθνή αγώνα τον Ιούνιο</h3>
-                <span class="card__meta">χθες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p9" role="img" aria-label="Στίβος"></div>
-                <span class="card__kicker">ΣΤΙΒΟΣ</span>
-                <h3 class="card__title">Τρεις νέοι αθλητές της Λέσβου στην εθνική ομάδα εφήβων</h3>
-                <span class="card__meta">προχθές</span>
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <header class="section-head">
-              <h2>ΠΟΛΙΤΙΣΜΟΣ</h2>
-              <a class="see-all" href="#">Όλος ο Πολιτισμός</a>
-            </header>
-            <div class="grid-4">
-              <a href="#" class="card">
-                <div class="card__img p1 video" role="img" aria-label="Βίντεο: Έκθεση Αιγαίου"></div>
-                <span class="card__kicker">ΒΙΝΤΕΟ · ΕΚΘΕΣΗ</span>
-                <h3 class="card__title">Περιήγηση στην έκθεση «Αιγαίο: Σύγχρονο Βλέμμα»</h3>
-                <span class="card__meta">3:42</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p2" role="img" aria-label="Βιβλίο"></div>
-                <span class="card__kicker">ΒΙΒΛΙΟ</span>
-                <h3 class="card__title">Το νέο μυθιστόρημα της Εύας Στεφανίδου — κριτική</h3>
-                <span class="card__meta">πριν 4 ώρες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p3" role="img" aria-label="Μουσική"></div>
-                <span class="card__kicker">ΜΟΥΣΙΚΗ</span>
-                <h3 class="card__title">Συναυλίες του καλοκαιριού — όλο το πρόγραμμα</h3>
-                <span class="card__meta">χθες</span>
-              </a>
-              <a href="#" class="card">
-                <div class="card__img p4" role="img" aria-label="Κινηματογράφος"></div>
-                <span class="card__kicker">ΚΙΝΗΜΑΤΟΓΡΑΦΟΣ</span>
-                <h3 class="card__title">Η Λέσβος στο φεστιβάλ Κάννες — ένα σπάνιο ντοκιμαντέρ</h3>
-                <span class="card__meta">χθες</span>
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -598,6 +655,7 @@
             <li><a href="#">ΑΘΛΗΤΙΣΜΟΣ</a></li>
             <li><a href="#">ΠΟΛΙΤΙΣΜΟΣ</a></li>
             <li><a href="#">ΑΠΟΨΕΙΣ</a></li>
+            <li><a href="#agora">ΑΓΟΡΑ</a></li>
             <li><a href="#platia">ΠΛΑΤΕΙΑ</a></li>
           </ul>
         </div>
@@ -644,6 +702,7 @@
         <li><a href="#">ΠΟΛΙΤΙΣΜΟΣ</a></li>
         <li><a href="#">ΑΠΟΨΕΙΣ</a></li>
         <li><a href="#">ΠΟΛΥΜΕΣΑ</a></li>
+        <li><a href="#agora">ΑΓΟΡΑ</a></li>
         <li><a href="#platia">ΠΛΑΤΕΙΑ</a></li>
         <li><a href="#">ΣΤΟΝΗΣΙ 99 FM</a></li>
         <li><a href="#">ΑΡΧΕΙΟ</a></li>
