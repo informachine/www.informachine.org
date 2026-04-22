@@ -462,7 +462,9 @@ button { font: inherit; }
 .featured {
   display: grid; gap: var(--sp-5);
   grid-template-columns: 1fr;
+  contain: layout style;
 }
+.featured > * { min-width: 0; }
 @media (min-width: 768px) { .featured { grid-template-columns: 2fr 1fr; } }
 .featured__main { display: flex; flex-direction: column; gap: var(--sp-4); }
 .featured__main .card__img { aspect-ratio: 16 / 9; }
@@ -1482,9 +1484,13 @@ body.reading-focus .site-footer:hover {
   grid-template-columns: 1fr;
   padding: clamp(24px, 3.5vw, 40px) 0;
   border-bottom: 1px solid var(--rule);
+  contain: layout style;
 }
+.category-featured > * { min-width: 0; }  /* first-paint right-shift guard */
+.category-featured > a { display: block; width: 100%; text-decoration: none; color: inherit; }
 @media (min-width: 768px) { .category-featured { grid-template-columns: 1.4fr 1fr; } }
 .category-featured__img {
+  width: 100%;               /* explicit — needed so aspect-ratio computes on first paint */
   aspect-ratio: 16 / 9;
   background: linear-gradient(135deg, #2B4C7E 0%, #0F2A52 100%);
   border-radius: var(--r-md);
