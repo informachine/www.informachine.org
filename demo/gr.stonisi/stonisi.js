@@ -105,20 +105,21 @@
     const setLabel = (text) => { if (labelEl) labelEl.textContent = text; };
     const setState = (state) => {
       // state: 'idle' | 'playing' | 'paused'
+      // Short labels to keep the button compact; aria-label carries the fuller meaning.
       switch (state) {
         case 'playing':
           tts.setAttribute('aria-pressed', 'true');
-          setLabel('Παύση ανάγνωσης');
-          tts.setAttribute('aria-label', 'Παύση ανάγνωσης');
+          setLabel('Παύση');
+          tts.setAttribute('aria-label', 'Παύση ανάγνωσης άρθρου');
           break;
         case 'paused':
           tts.setAttribute('aria-pressed', 'true');
-          setLabel('Συνέχιση ανάγνωσης');
-          tts.setAttribute('aria-label', 'Συνέχιση ανάγνωσης');
+          setLabel('Συνέχεια');
+          tts.setAttribute('aria-label', 'Συνέχεια ανάγνωσης άρθρου');
           break;
         default: // idle
           tts.setAttribute('aria-pressed', 'false');
-          setLabel('Ανάγνωση άρθρου');
+          setLabel('Ανάγνωση');
           tts.setAttribute('aria-label', 'Ακούστε την ανάγνωση του άρθρου');
       }
     };

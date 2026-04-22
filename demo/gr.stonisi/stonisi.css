@@ -675,8 +675,9 @@ button { font: inherit; }
   border: 0;
 }
 .article__standfirst {
-  font-family: var(--serif); font-style: italic;
-  font-size: var(--fs-standfirst); line-height: 1.5;
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.4vw, 1.125rem);   /* matches hero standfirst on index */
+  line-height: 1.55;
   color: var(--ink-muted); margin: 0 0 var(--sp-6);
   max-width: var(--max-article);
 }
@@ -1395,8 +1396,8 @@ body.reading-focus .site-footer:hover {
   max-width: 22ch;
 }
 .category-hero__description {
-  font-family: var(--serif); font-style: italic;
-  font-size: var(--fs-standfirst);
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.4vw, 1.125rem);   /* matches hero standfirst on index */
   color: #DFE8F6;
   margin: var(--sp-4) 0 0; max-width: 62ch;
   line-height: 1.55;
